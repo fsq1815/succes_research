@@ -1,0 +1,145 @@
+---
+title: "SUCCES 项目：回归、稳健性与异质性"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+                      fig.width = 9, fig.height = 5)
+source("R/00_setup.R")
+```
+
+> **⚠️ 运行前置条件（2026-11-07，两轮双人编码后）**：本脚本**当前不可运行出结论**。
+> 第三轮实收 64 条、`rate_stable(view≥1000)` 41 条，对应 14–16 个自变量，仍低于 10–15 观测/参数的经验下限；
+> 且 `s_credible` 8 行 >0、`s_stories` 9 行 >0（H4/H6 待全表补齐后判定）、人工指标仅 13/64 行。
+> ✅ **最终决策（2026-11-07，路径 C / 变更 G）**：两轮双编码信度均未达标 →
+> 六个人工语义指标**正式不采用**，分析口径锁定为**规则项-only**。
+> 若将来运行本脚本，唯一允许的自变量口径是 `SC_mvp_coded.csv` 的 `s_*`（规则项），
+> `*_DIAGNOSTIC_ONLY` 列**不得代入**，也不得回填人工列或补齐全表来「恢复变异」。
+> 当前唯一阻塞项是样本量；信度问题已通过缩小口径处理，不再是待办。
+> 仍须按预注册第 6 节完成口径确认后再执行，见 `docs/SC_coding-adoption.md`。
+> 全链路自检请改用 `R/SC_mvp.R`（它**不报告任何系数**）。
+
+> **全篇口径**：只报告"相关/关联"，绝不写"影响""导致""提升"。本项目是观察性数据，
+> 播放与互动由推荐算法分发，存在明显内生性。因果检验需另做标题 A/B 实验（见报告"下一步"）。
+> **H1–H6 六条一律预设正相关**；未获支持照实报告效应量与 95% CI，不删除、不改方向、不回头调词典。
+
+```{r load}
+# 注意：view >= 1000 按与结果相关的量筛样本，会引入选择偏差。
+# 按预注册第 4 节，正式分析须另跑一次「不筛播放量」的敏感性对照；
+# 本轮 SC_mvp.R 用 rate_stable 标记而非静默删除，就是为了保留这个对照。
+d <- readr::read_csv(FILE_CODED, show_col_types = FALSE) %>%
+  filter(duration >= 60, view >= 1000, !is.na(follower)) %>%
+  mutate(across(starts_with("s_"), ~ as.numeric(scale(.)), .names = "z_{.col}"))
+
+dims <- paste0("z_s_", c("simple", "unexpected", "concrete",
+                          "credible", "emotional", "stories"))
+controls <- c("log_follower", "log_duration", "title_len", "days_since_pub",
+              "pub_hour", "pub_weekday", "subzone")
+fml <- as.formula(paste("log1p(engage_rate) ~",
+                        paste(c(dims, controls), collapse = " + ")))
+```
+
+## 1. 主模型
+
+```{r main}
+m1 <- lm(fml, data = d)
+# 按 UP 主聚类稳健标准误：同一 UP 主的视频误差不独立
+ct <- lmtest::coeftest(m1, vcov. = sandwich::vcovCL(m1, cluster = ~mid))
+broom::tidy(ct, conf.int = TRUE) %>%
+  filter(str_detect(term, "^z_s_")) %>%
+  knitr::kable(digits = 3, caption = "主模型：六维标准化系数（聚类稳健）")
+```
+
+```{r effectplot}
+broom::tidy(ct, conf.int = TRUE) %>%
+  filter(str_detect(term, "^z_s_")) %>%
+  mutate(dimension = str_remove(term, "^z_s_")) %>%
+  ggplot(aes(estimate, reorder(dimension, estimate))) +
+  geom_vline(xintercept = 0, linetype = 2, color = "grey50") +
+  geom_pointrange(aes(xmin = conf.low, xmax = conf.high), color = "#185FA5") +
+  labs(title = "控制粉丝量、时长与发布时间后，六维与互动率的关联",
+       subtitle = "点=系数，横线=95% 置信区间；标准化解释：维度得分 +1 SD 对应互动率的变化",
+       x = "回归系数（log 互动率）", y = NULL,
+       caption = "观察性数据，非因果效应")
+save_fig("fig3_main_effects", 8, 4.5)
+```
+
+## 2. 共线性
+
+```{r vif}
+car::vif(m1) %>% enframe("term", "VIF") %>%
+  filter(str_detect(term, "z_s_")) %>% knitr::kable(digits = 2)
+# 若 VIF 高：报告时以整组解释为主，不做单维系数的强断言；可补岭回归或主成分敏感性分析
+```
+
+## 3. 稳健性（四项都跑，结果写进报告表格）
+
+```{r robustness}
+# (1) 换因变量：收藏率（更贴近知识内容"有用"信号）
+m2 <- lm(update(fml, log1p(fav_rate) ~ .), data = d)
+
+# (2) 去掉播放量极端值（截断 1% / 99%）
+q <- quantile(d$view, c(0.01, 0.99), na.rm = TRUE)
+m3 <- lm(fml, data = filter(d, view >= q[1], view <= q[2]))
+
+# (3) 剔除账号属性 Cr4 后重编码再跑：确认结论不是"大号认证"驱动的
+#     （在 02_code_succes.R 里把 cr4 权重置 0，重算 s_credible 后重跑主模型）
+
+# (4) 同一 UP 主内比较：UP 主固定效应，缓解账号风格与粉丝结构混杂
+# install.packages("fixest")
+# library(fixest)
+# m4 <- feols(as.formula(paste("log1p(engage_rate) ~",
+#              paste(c(dims, controls[!controls %in% c("subzone")]), collapse = " + "),
+#              "| mid")), data = d)
+# etable(m4)
+
+modelsummary::modelsummary(list("主模型" = m1, "收藏率" = m2, "去极值" = m3),
+                           stars = TRUE, gof_omit = "IC|Log|F|RMSE")
+```
+
+## 4. 异质性：RQ3（最可能有发现的一节）
+
+```{r hetero}
+res <- lapply(split(d, d$content_type), function(x) {
+  if (nrow(x) < 30) return(NULL)
+  fit <- lm(fml, data = x)
+  broom::tidy(lmtest::coeftest(fit, vcov. = sandwich::vcovCL(fit, cluster = ~mid)),
+              conf.int = TRUE) %>%
+    filter(str_detect(term, "^z_s_")) %>%
+    mutate(dimension = str_remove(term, "^z_s_"))
+}) %>% bind_rows(.id = "content_type")
+
+ggplot(res, aes(estimate, reorder(dimension, estimate), color = content_type)) +
+  geom_vline(xintercept = 0, linetype = 2, color = "grey60") +
+  geom_point(position = position_dodge(0.5)) +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
+                 position = position_dodge(0.5), height = 0.2) +
+  labs(title = "硬核科普 vs 通识/学习方法：起作用的维度是否不同",
+       x = "回归系数", y = NULL, color = "内容类型",
+       caption = "分组样本量较小时置信区间会变宽，需谨慎解读")
+save_fig("fig4_heterogeneity", 8.5, 5)
+```
+
+> **六条假设均预设正相关**。无论结果是获得支持、未获支持还是方向相反，都按预注册口径如实报告，
+> 并给出效应量与置信区间；尤其不要因为某维不显著就回头调整词典或假设（见 codebook「常见坑」第 2 条）。
+
+## 5. 必须报告的诊断与边界
+
+```{r diagnostics}
+par(mfrow = c(2, 2)); plot(m1); par(mfrow = c(1, 1))
+# 残差异方差、非线性、强影响点；必要时改用稳健回归或分位数回归
+# quantile regression: quantreg::rq(fml, tau = c(0.25, 0.5, 0.75), data = d)
+```
+
+写入报告的边界清单：
+
+1. 观察性数据 + 推荐算法分发，**不能作因果解释**；
+2. 编码测的是**标题/简介的文本特征**，不是内容质量或"法则本身"；
+3. 六维间相关，共线性限制单维系数的解读；
+4. 单平台、单时间窗快照，外部效度有限；
+5. 未观测混杂：封面、投流、发布时间热点、UP 主更新频率。

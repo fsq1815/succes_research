@@ -1,0 +1,34 @@
+MIT License
+
+Copyright (c) 2026 SUCCES-Weekly project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+DATA NOTICE (not part of the MIT grant above)
+-------------------------------------------------------------------------------
+* The Kaggle dataset `zhuosun03/bilibili-must-watch` is labelled with an
+  UNKNOWN license on Kaggle. No original CSV, zip, or bulk copy is distributed
+  with this repository. `SW_download.py` re-fetches it from Kaggle's public
+  download endpoint; downstream users must verify their own right to use it.
+* Comment texts collected from public Bilibili endpoints are user-generated
+  content. Raw comment files and the row-level analysis table are excluded by
+  `.gitignore` and are NOT distributed here. Only aggregate results are kept.
+* No usernames, user IDs, avatars, signatures, or other identity fields are
+  stored by the collector. See `docs/SW_data-source.md` for the full boundary.

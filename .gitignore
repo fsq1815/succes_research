@@ -1,0 +1,54 @@
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+R_libs/
+
+# Rendered artefacts (source .Rmd is tracked)
+*.html
+# index.html is a hand-authored web report, not an Rmd artefact: keep it trackable for GitHub Pages
+!/index.html
+*.pdf
+*.nb.html
+
+# Editor / temp
+*.swp
+*~
+*.bak
+*.tmp
+.idea/
+.vscode/
+
+# ---- 公开仓库边界：本地留痕，不随仓库分发 ----
+# 双编码往返件、交回原件与导入前备份（含真人填写过程，仅本地留存）
+data/processed/handoff/
+data/processed/archive_coderB_import/
+data/processed/archive_main_sync/
+*.xlsx
+*.zip
+
+# studies/ 下只发布脚本、文档与聚合结果；原始数据、评论正文与个体级表一律排除
+studies/**/data/raw/
+studies/**/data/processed/
+studies/**/data/external/*.zip
+studies/**/__pycache__/
+
+# 旧版网页存档（仅本地保留，GitHub Pages 入口是 index.html）
+research.html
+research note.html

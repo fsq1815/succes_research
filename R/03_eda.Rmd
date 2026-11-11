@@ -1,0 +1,108 @@
+---
+title: "SUCCES 项目：描述与相关分析"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+                      fig.width = 9, fig.height = 5)
+source("R/00_setup.R")
+```
+
+## 0. 读数据
+
+```{r load}
+d <- readr::read_csv(FILE_CODED, show_col_types = FALSE)
+
+# 剔除规则须与 docs/data-source.md 一致，并报告每一步剩余样本数
+n0 <- nrow(d)
+d <- d %>% filter(duration >= 60, view >= 1000, !is.na(follower))
+n1 <- nrow(d)
+d <- d %>% filter(!is.na(s_simple), !is.na(s_unexpected))
+n2 <- nrow(d)
+c("原始" = n0, "剔除低质/低曝后" = n1, "完成编码" = n2)
+```
+
+> 报告里必须写清样本从 n0 到 n2 的剔除流程与理由（防止隐形选择偏差）。
+
+## 1. 描述统计
+
+```{r desc}
+dims <- c("s_simple", "s_unexpected", "s_concrete",
+          "s_credible", "s_emotional", "s_stories")
+
+d %>%
+  summarise(across(all_of(c(dims, "engage_rate", "fav_rate", "view", "duration")),
+                   list(mean = ~mean(., na.rm = TRUE),
+                        sd   = ~sd(., na.rm = TRUE),
+                        min  = ~min(., na.rm = TRUE),
+                        max  = ~max(., na.rm = TRUE)), .names = "{.col}_{.fn}")) %>%
+  tidyr::pivot_longer(everything(), names_to = c("var", ".value"), names_sep = "_(?=[^_]+$)") %>%
+  knitr::kable(digits = 3)
+```
+
+## 2. 六维得分分布
+
+```{r dist}
+d %>%
+  select(bvid, all_of(dims)) %>%
+  tidyr::pivot_longer(-bvid, names_to = "dimension", values_to = "score") %>%
+  ggplot(aes(score, fill = dimension)) +
+  geom_histogram(bins = 12, color = "white", linewidth = 0.2) +
+  facet_wrap(~dimension, ncol = 3) +
+  scale_fill_brewer(palette = "Blues") +
+  labs(title = "六个维度的得分分布",
+       subtitle = "若某维度几乎全为 0 或 1，说明该维度缺乏区分度，需在报告中说明",
+       x = "维度得分（0-1）", y = "视频数", fill = NULL)
+save_fig("fig1_dimension_distribution", 9, 5)
+```
+
+## 3. 维度间相关与共线性
+
+```{r corr}
+# 六维很可能不独立；先报告相关矩阵，再看 VIF
+M <- cor(d[, dims], use = "pairwise.complete.obs")
+corrplot::corrplot(M, method = "color", type = "upper", addCoef.col = "grey30",
+                   tl.col = "black", tl.srt = 35, diag = FALSE)
+
+m0 <- lm(engage_rate ~ ., data = d[, c("engage_rate", dims)])
+car::vif(m0)   # > 5 需在报告中讨论，避免逐维单独下结论
+```
+
+## 4. 各维度与互动率的原始关系
+
+```{r scatter}
+d %>%
+  tidyr::pivot_longer(all_of(dims), names_to = "dimension", values_to = "score") %>%
+  ggplot(aes(score, log1p(engage_rate))) +
+  geom_point(alpha = 0.3, size = 1) +
+  geom_smooth(method = "lm", se = TRUE, color = "#185FA5", fill = "#B5D4F4") +
+  facet_wrap(~dimension, scales = "free_x", ncol = 3) +
+  labs(title = "六维得分与互动率（未控制混杂）",
+       subtitle = "这一张图只是探索，不能作为结论；控制变量后的效应见 04_model.Rmd",
+       x = "维度得分", y = "log(1 + 互动率)")
+save_fig("fig2_raw_relationship", 9, 6)
+```
+
+## 5. 样本结构
+
+```{r structure}
+p1 <- d %>% count(content_type, subzone) %>%
+  ggplot(aes(reorder(subzone, n), n, fill = content_type)) +
+  geom_col() + coord_flip() +
+  labs(title = "样本分区与内容类型构成", x = NULL, y = "视频数", fill = "内容类型")
+
+p2 <- d %>%
+  ggplot(aes(log1p(view), log1p(follower), color = content_type)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "播放量与粉丝量", x = "log(1+播放)", y = "log(1+粉丝)", color = NULL)
+
+p1
+p2
+```
+
+> 检查点：如果高互动样本几乎全来自大 UP 主，主模型必须控制粉丝量并做聚类稳健标准误。

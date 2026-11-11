@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the integrated report and the individual study reports under studies/."
+title: "SUCCES on Bilibili: pre-registered measurement and association studies on Chinese knowledge videos"
+abstract: >-
+  Three independent studies that share one rule-based codebook and the rule
+  "fix the measurement before looking at results". The preceding SC_ study
+  pre-registers six directional hypotheses on 64 self-collected videos, runs
+  two rounds of blind double coding, and drops the subjective semantic items
+  before any model is fitted; its main model is never run. The main SK_ study
+  ports the same codebook to two licensed Kaggle datasets (5,717 and 962
+  videos) and, after pre-registration, finds 1 / 6 supported hypotheses
+  (Concrete, beta = +0.0891, q = 0.0292), an association that depends on
+  account-level controls and is not replicated in a second domain. The SW_
+  follow-up moves to top-liked comments and finds 0 / 6 on a reproducible
+  information-discussion proxy. The studies are not pooled. All statements
+  are associational; no causal or "SUCCES works / does not work" claim is made.
+authors:
+  - name: "SUCCES on Bilibili study"
+version: 1.0.0
+date-released: 2026-11-11
+license: MIT
+keywords:
+  - pre-registration
+  - content analysis
+  - reproducible research
+  - measurement validity
+  - inter-coder reliability
+  - cluster-robust inference
+  - BH-FDR
+  - Bilibili

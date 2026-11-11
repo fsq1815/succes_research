@@ -1,0 +1,2 @@
+dataset,ref,url,license,file,size_bytes,sha256,downloaded_at,note
+weekly-must-watch,zhuosun03/bilibili-must-watch,https://www.kaggle.com/api/v1/datasets/download/zhuosun03/bilibili-must-watch,Unknown (Kaggle licenseName),SW_weekly-must-watch.zip,989869,1daf74afe867b0743560677f1c3db6a45737116703ab49bac743b20a6a716b21,2026-11-07T15:10:15,原始 CSV 不随仓库分发；仅作本地分析输入
