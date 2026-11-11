@@ -1,6 +1,6 @@
 # SUCCES on Bilibili · Pre-registered Measurement and Association Studies (Integrated Repository)
 
-[中文说明](README.md) · [Web version (~3 min)](index.html) · [Integrated report](REPORT.md) · [Main study SK_](studies/SK_/) · [Follow-up SW_](studies/SW_/) · [Reproduction guide](docs/REPRODUCE.md)
+[中文说明](README.md) · [Web version (~3 min)](index.html) · [One-pager report](one-pager.html) · [Integrated report](REPORT.md) · [Main study SK_](studies/SK_/) · [Follow-up SW_](studies/SW_/) · [Reproduction guide](docs/REPRODUCE.md)
 
 > This repository collects the public code, pre-registrations and aggregate results of **three independent studies** that share one rule-based codebook and the rule "fix the measurement before looking at results".
 >

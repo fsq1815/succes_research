@@ -24,6 +24,8 @@ R_libs/
 *.html
 # index.html is a hand-authored web report, not an Rmd artefact: keep it trackable for GitHub Pages
 !/index.html
+# one-pager.html is the long-form research note page, also served on GitHub Pages
+!/one-pager.html
 *.pdf
 *.nb.html
 
@@ -51,4 +53,3 @@ studies/**/__pycache__/
 
 # 旧版网页存档（仅本地保留，GitHub Pages 入口是 index.html）
 research.html
-research note.html
