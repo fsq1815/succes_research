@@ -14,7 +14,7 @@
 
 ---
 
-## 1. 这个仓库有什么、没有什么
+## 1. 仓库内容一览
 
 | | 内容 |
 |---|---|
@@ -130,7 +130,7 @@ cd ../SW_ && python3 SW_prepare.py && Rscript R/SW_analyze.R
 └── writeup/report.Rmd              未渲染的报告模板（含状态横幅与 `___` 占位，非成品报告）
 ```
 
-## 8. 局限（不是免责声明，是研究判断）
+## 8. 局限
 
 1. **样本量**：64 条，主模型需约 140–240 条观测，故从未运行；`s_credible` / `s_stories` 在规则项口径下变异稀疏。
 2. **构念效度**：口径收缩后每维由 4 项减为 3 项；测的是标题与简介的**文本特征**，不是「法则本身」，更不是内容质量。字幕 0% 使 Stories 只能靠标题代理，`s4` 在本样本为常量。
@@ -138,22 +138,11 @@ cd ../SW_ && python3 SW_prepare.py && Rscript R/SW_analyze.R
 4. **外部效度**：单平台、中文语境、单一历史快照窗口，结论不能外推到其它平台或内容形态。
 5. **测量信度**：人工语义编码两轮均未达标并已排除；这是口径的代价，不是被掩盖的缺陷。
 
-## 9. 引用边界
-
-> 下表约束的是 **`SC_` 前序部分**。`SK_` / `SW_` 各自可／不可声称的边界见 [`studies/SK_/SK_report.md`](studies/SK_/SK_report.md) 与 [`studies/SW_/SW_report.md`](studies/SW_/SW_report.md)；跨项目陈述一律标注来源。
-
-| ✅ 可以写 | ❌ 不得写 |
-|---|---|
-| 64 条真实公开视频、锁定两区、预注册、codebook v0.3、两轮盲法 20% 双编码流程 | 「编码一致性达标」「kappa 良好」，或摘取任何单个 kappa 数值当作成果 |
-| 「发现主观语义指标信度不足，主动排除出分析口径，只保留可复现规则项」这一研究设计判断 | `modelled each dimension against engagement rate`、`240 videos`、`cluster-robust SE` 等未发生的产出 |
-| 字幕 0%、榜单历史快照、120 条目标未达、主模型因样本量不足未运行 | 就 `SC_` 部分报告任何回归系数、p 值、置信区间、因果结论，或「SUCCES 有效 / 无效」 |
-| 跨项目陈述见 [整合报告](REPORT.md)，须标注各自项目来源；系数由 `studies/` 下各自 R 脚本产出 | 把 `SK_` / `SW_` 系数读成 `SC_` 的产出、说成复现 / 合并样本，或用延伸结论反推 `SC_` 的主模型结果 |
-
-## 10. 许可
+## 9. 许可
 
 代码按 [MIT](LICENSE) 发布；`studies/SK_/` 与 `studies/SW_/` 各自附来源与许可声明。本仓库只发布脚本、文档与聚合结果：`data/raw/` 为公开视频元数据（含创作者公开标识），不含观众个人信息；评论正文、个体级编码表、Kaggle 原始 zip 与双编码交回原件一律不分发，由各自下载 / 采集脚本按 manifest 重建。`SW_` 数据源许可 Unknown，故只发布聚合统计。SUCCES 框架引自 Chip Heath & Dan Heath《Made to Stick》(2007)，仅作学术分析对象，权利归原作者。
 
-## 11. 仓库地址与网页版
+## 10. 仓库地址与网页版
 
 - 代码仓库：<https://github.com/fsq1815/succes_research>
 - 网页版（约 3 分钟）：<https://fsq1815.github.io/succes_research/>
