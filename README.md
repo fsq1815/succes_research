@@ -1,6 +1,6 @@
 # SUCCES on Bilibili · 预注册的内容特征测量与关联研究（系列整合仓库）
 
-[English version](README.en.md) · [网页版（约 3 分钟）](index.html) · [整合报告](REPORT.md) · [主体 SK_](studies/SK_/) · [延伸 SW_](studies/SW_/) · [复现与发布指南](docs/REPRODUCE.md)
+[English version](README.en.md) · [网页版（约 3 分钟）](one-pager.html) · [整合报告](REPORT.md) · [主体 SK_](studies/SK_/) · [延伸 SW_](studies/SW_/) · [复现与发布指南](docs/REPRODUCE.md)
 
 > **本仓库收录三项独立研究的可公开代码、预注册与聚合结果，共用一个编码表与「先定测量、再看结果」的口径。**
 >
