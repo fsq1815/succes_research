@@ -85,16 +85,9 @@ python3 SC_make_coding_sheets.py
 
 ## 8. 发布到 GitHub
 
-仓库已完成本地提交，只需绑定远程并推送（把 `<your-name>` / `<your-repo>` 换成自己的）：
+仓库已公开发布于 <https://github.com/fsq1815/succes_research>，网页版为 <https://fsq1815.github.io/succes_research/>。
 
-```bash
-cd succes-bilibili-public
-git remote add origin https://github.com/<your-name>/<your-repo>.git
-git branch -M main
-git push -u origin main
-```
-
-GitHub Pages：仓库 **Settings → Pages → Deploy from a branch → `main` / `/ (root)` → Save**，稍后访问 `https://<your-name>.github.io/<your-repo>/`。
+若要把本仓库再镜像到别处（fork 或自建 Pages），推送后按 **Settings → Pages → Deploy from a branch → `main` / `/ (root)` → Save** 开启即可，注意 `index.html` 的 `!/index.html` 例外规则要一并带上。
 
 `.gitignore` 排除 `.DS_Store`、`R_libs/`、`__pycache__`、`*.xlsx` / `*.zip`、双编码交回原件与归档备份、旧版网页存档，以及 `studies/` 下的原始数据、评论正文与个体级编码表；`!/index.html` 例外保证 Pages 首页被跟踪。上传后建议在 GitHub 仓库页补一句 description 与 topics，例如 `inter-coder-reliability`、`pre-registration`、`content-analysis`、`reproducible-research`。
 

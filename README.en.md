@@ -63,7 +63,7 @@ A deliberate design choice: the outcome is **engagement rate**, not view count. 
 Both core R scripts use **base R only** — no packages, no network:
 
 ```bash
-git clone <your-repo-url> && cd <repo>
+git clone https://github.com/fsq1815/succes_research.git && cd succes_research
 
 # SC_ · preceding study (base R only, no packages, no network)
 Rscript R/SC_mvp.R      # rule-only coding + 11 self-checks

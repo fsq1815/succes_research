@@ -16,6 +16,8 @@ abstract: >-
   are associational; no causal or "SUCCES works / does not work" claim is made.
 authors:
   - name: "SUCCES on Bilibili study"
+repository-code: "https://github.com/fsq1815/succes_research"
+url: "https://fsq1815.github.io/succes_research/"
 version: 1.0.0
 date-released: 2026-11-11
 license: MIT

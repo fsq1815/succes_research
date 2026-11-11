@@ -80,7 +80,7 @@ flowchart TD
 两个核心 R 脚本**只依赖 base R**，不需要安装任何包，也不需要联网：
 
 ```bash
-git clone <your-repo-url> && cd <repo>
+git clone https://github.com/fsq1815/succes_research.git && cd succes_research
 
 # SC_ · 前序（仅 base R，不联网、不装包）
 Rscript R/SC_mvp.R      # 规则项-only 编码 + 11 项自检
@@ -153,14 +153,15 @@ cd ../SW_ && python3 SW_prepare.py && Rscript R/SW_analyze.R
 
 代码按 [MIT](LICENSE) 发布；`studies/SK_/` 与 `studies/SW_/` 各自附来源与许可声明。本仓库只发布脚本、文档与聚合结果：`data/raw/` 为公开视频元数据（含创作者公开标识），不含观众个人信息；评论正文、个体级编码表、Kaggle 原始 zip 与双编码交回原件一律不分发，由各自下载 / 采集脚本按 manifest 重建。`SW_` 数据源许可 Unknown，故只发布聚合统计。SUCCES 框架引自 Chip Heath & Dan Heath《Made to Stick》(2007)，仅作学术分析对象，权利归原作者。
 
-## 11. 发布到 GitHub
+## 11. 仓库地址与网页版
 
-本仓库已完成本地提交，只需绑定远程并推送（把 `<your-name>` / `<your-repo>` 换成自己的）：
+- 代码仓库：<https://github.com/fsq1815/succes_research>
+- 网页版（约 3 分钟）：<https://fsq1815.github.io/succes_research/>
+
+克隆后即可复现，无需额外配置：
 
 ```bash
-cd succes-bilibili-public
-git remote add origin https://github.com/<your-name>/<your-repo>.git
-git branch -M main && git push -u origin main
+git clone https://github.com/fsq1815/succes_research.git && cd succes_research
 ```
 
-GitHub Pages：仓库 **Settings → Pages → Deploy from a branch → `main` / `/ (root)` → Save**，稍后访问 `https://<your-name>.github.io/<your-repo>/`。发布后如需 GitHub 引用卡片，可在 [`CITATION.cff`](CITATION.cff) 补上自己的作者名与 `repository-code`（当前使用去标识化的集体作者）。完整检查清单见 [docs/REPRODUCE.md](docs/REPRODUCE.md) 末节。
+本仓库的分析与结论走两条通道：`R/` 下的 `SC_` 脚本与 `studies/` 下 `SK_` / `SW_` 的脚本、预注册、聚合结果；`index.html` 与 `REPORT.md` 只负责叙述，不产生新数字。若你要基于本仓库做 GitHub Pages 之类的二次发布，请先读 [docs/REPRODUCE.md](docs/REPRODUCE.md) 末节的发布自检清单。
