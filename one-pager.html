@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="gWTd4vSW1vaiJLWYA5Hcsx" style=""><head data-page-node-id="8NIk6irrjJFurZiQNssMkC">
+<meta charset="UTF-8" data-page-node-id="HnwUpETAq2mGNtNRDUOIIG">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="o8eWj8wlYYdbJERK57FiGp">
+<meta name="description" content="SUCCES 六维在中文知识类短视频中的一次可复现检验：三个独立项目、同一套规则项编码表，以及一份关于测量边界的诚实记录。约 5 分钟读完。" data-page-node-id="xW0VSCYOo0i3eOe50tljFE">
+<meta name="color-scheme" content="light" data-page-node-id="PjDzQeHowT1jeQdkxRJUIV">
+<title data-page-node-id="hAtdG07rgk5Trr1GkaDxqB">当知识走进短视频 · SUCCES 六维的一次可复现检验</title>
+<style data-page-node-id="F3Zs92tdG7V7hn5t74Dv15">
+:root{
+  --page:1280px;
+  --bg:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f4f2ed;
+  --ink:#1d252b;
+  --ink-soft:#3d4a52;
+  --muted:#68737c;
+  --line:#e3e0d9;
+  --line-soft:#edeae4;
+  --accent:#2c5a6c;
+  --accent-soft:#e9f1f3;
+  --warm:#a95b2c;
+  --warm-soft:#fbf1e8;
+  --ok:#2f7565;
+  --ok-soft:#eaf3f0;
+  --shadow:0 1px 2px rgba(28,37,43,.04),0 8px 28px rgba(28,37,43,.05);
+  --serif:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  --mono:"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15.5px;line-height:1.8;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(44,90,108,.3)}
+a:hover{border-bottom-color:var(--accent)}
+::selection{background:#d8e8ec;color:var(--ink)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* 所有内容块统一宽度：两端对齐到同一条网格线 */
+.wrap{max-width:var(--page);margin:0 auto;padding:0 40px}
+/* grid 子项允许收缩，长代码行不会撑破窄屏 */
+.hero-grid>*,.split>*,.trio>*,.bounds>*,.methods>*,.fgrid>*{min-width:0}
+pre{max-width:100%}
+p,li,.just,caption,.box p,.card p,.stage p,.bound p,.panel p,.dim .d,.fgrid p,.answer,.strip{
+  text-align:justify;text-justify:inter-ideograph;text-align-last:left;
+}
+
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;transition:width .1s linear}
+.nav{
+  position:sticky;top:0;z-index:50;background:rgba(250,249,246,.92);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--page);margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:24px;height:56px}
+.brand{font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.02em;white-space:nowrap;color:var(--ink);border:0}
+.brand span{color:var(--muted);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.08em;margin-left:8px}
+.nav-links{display:flex;gap:22px;flex:1;justify-content:flex-end;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);white-space:nowrap;border:0;padding:4px 0;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a.active{font-weight:600}
+.nav-links a.alt{font-size:12px;color:var(--accent);border:1px solid #cfe0e5;border-radius:999px;padding:3px 11px;background:var(--accent-soft)}
+.nav-links a.alt:hover{background:#dfeaee}
+.readtime{font-size:11px;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border:1px solid #cfe0e5;padding:3px 10px;border-radius:999px;white-space:nowrap}
+
+/* hero */
+.hero{padding:52px 0 42px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(44,90,108,.07),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:stretch}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 16px}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,4.4vw,3.5rem);line-height:1.2;letter-spacing:.01em;margin:0 0 14px;font-weight:600}
+.hero .sub{font-family:var(--serif);font-size:clamp(1.02rem,1.8vw,1.3rem);color:var(--ink-soft);margin:0 0 14px;line-height:1.55}
+.hero .deck{color:var(--muted);font-size:14.5px;margin:0 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:11.5px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-soft)}
+.chip.solid{background:var(--accent-soft);border-color:#cfe0e5;color:var(--accent)}
+.tldr{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:5px;padding:22px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.tldr .label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:650;margin-bottom:10px}
+.tldr p{font-size:14px;color:var(--ink-soft);line-height:1.78;margin:0 0 16px}
+.tldr p strong{color:var(--ink)}
+.tldr-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto;border-top:1px solid var(--line-soft);padding-top:14px}
+.tldr-nums div{text-align:center}
+.tldr-nums b{display:block;font-family:var(--mono);font-size:1.28rem;color:var(--accent);line-height:1.3}
+.tldr-nums b.warm{color:var(--warm)}
+.tldr-nums span{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* sections */
+section{padding:46px 0;border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;flex:none}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2rem);font-weight:600;line-height:1.35;margin:0;letter-spacing:.01em}
+h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin:0 0 8px;line-height:1.5}
+h4{font-size:13.5px;font-weight:650;margin:0 0 6px;letter-spacing:.02em}
+.lede{font-size:16px;color:var(--ink-soft);margin:0 0 22px;line-height:1.85}
+p{margin:0 0 12px}
+p:last-child{margin-bottom:0}
+.small{font-size:12.5px;color:var(--muted);line-height:1.75}
+strong{font-weight:650}
+em{font-style:normal;background:linear-gradient(transparent 62%,#e6eff1 62%);padding:0 2px}
+code{font-family:var(--mono);font-size:.85em;background:var(--surface-2);padding:2px 5px;border-radius:3px;color:var(--ink-soft)}
+.anchor{display:block;height:0;overflow:hidden;scroll-margin-top:82px}
+
+/* two-column split: 两侧边缘与容器两端齐平 */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:22px 24px;box-shadow:var(--shadow)}
+.panel.flexcol{display:flex;flex-direction:column}
+.panel.flexcol .dims{flex:1;align-content:space-evenly}
+.panel p{font-size:14px;color:var(--ink-soft);line-height:1.82}
+.panel.tint{background:var(--accent-soft);border-color:#d3e3e8}
+.panel ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.8;color:var(--ink-soft)}
+.panel ul li{margin-bottom:6px}
+.panel ul li:last-child{margin-bottom:0}
+
+/* six dimensions */
+.dims{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0}
+.dim{border:1px solid var(--line);border-left:3px solid var(--dc);border-radius:4px;padding:11px 14px;background:var(--surface);display:flex;align-items:baseline;gap:10px}
+.dim .cn{font-family:var(--serif);font-size:1.02rem;font-weight:600;white-space:nowrap}
+.dim .en{font-size:10.5px;letter-spacing:.06em;color:var(--dc);font-weight:650;white-space:nowrap}
+.dim .d{font-size:12px;color:var(--muted);line-height:1.6}
+.dim .d.warn{color:var(--warm)}
+.dim-foot{margin-top:10px;font-size:12px;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:9px}
+
+/* stages */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:18px 20px;box-shadow:var(--shadow)}
+.stage.main{border-color:#c6dbe1;background:linear-gradient(180deg,#fff,#f7fbfc)}
+.stage .tag{font-family:var(--mono);font-size:10.5px;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:3px;letter-spacing:.04em}
+.stage .role{font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-left:8px}
+.stage h4{margin:10px 0 6px;font-family:var(--serif);font-size:1.08rem}
+.stage p{font-size:12.8px;color:var(--ink-soft);line-height:1.76;margin:0}
+.stage .out{font-size:12px;color:var(--accent);border-top:1px solid var(--line-soft);margin-top:12px;padding-top:10px;font-family:var(--mono)}
+
+/* one-line notes / strips */
+.strip{border:1px solid var(--line);border-radius:5px;background:var(--surface);padding:13px 20px;margin-top:16px;font-size:13.2px;color:var(--ink-soft);line-height:1.78}
+.strip.info{background:var(--accent-soft);border-color:#d3e3e8;border-left:3px solid var(--accent)}
+.strip.warn{background:var(--warm-soft);border-color:#eed9c6;border-left:3px solid var(--warm)}
+.strip.hyp{background:var(--surface-2)}
+.strip b{color:var(--ink)}
+.formula{font-family:var(--mono);font-size:12.5px;color:var(--accent);background:var(--surface);padding:2px 8px;border:1px solid var(--line);border-radius:3px;white-space:nowrap}
+
+/* table: 铺满整幅，与文本框左右两端齐平 */
+.table-wrap{margin-top:18px;border:1px solid var(--line);border-radius:5px;background:var(--surface);overflow:hidden}
+table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:13.5px}
+th,td{padding:11px 16px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+th{background:var(--surface-2);font-size:11.5px;letter-spacing:.06em;color:var(--muted);font-weight:650;text-align:left;white-space:nowrap}
+td{text-align:justify;text-justify:inter-ideograph;text-align-last:left}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.num{text-align:right}
+tr:last-child td{border-bottom:0}
+tr.hit{background:#f2f8f6}
+tr.hit td{font-weight:600;color:var(--ink)}
+.pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.pill.ok{background:var(--ok-soft);color:var(--ok);border-color:#cfe4dc}
+caption{caption-side:bottom;font-size:12px;color:var(--muted);padding:11px 16px;line-height:1.7;border-top:1px solid var(--line-soft)}
+
+/* boundary cards */
+.bounds{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.bound{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--warm);border-radius:5px;padding:16px 18px;box-shadow:var(--shadow)}
+.bound .k{font-family:var(--mono);font-size:10.5px;color:var(--warm);letter-spacing:.08em}
+.bound h4{margin:6px 0 6px;font-size:14px}
+.bound p{font-size:12.8px;color:var(--ink-soft);line-height:1.76;margin:0}
+
+/* answer */
+.answer{font-family:var(--serif);font-size:1.28rem;line-height:1.7;color:var(--ink);padding:20px 24px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:5px;background:var(--surface);margin-top:18px}
+
+/* 研究方法：四栏速读卡 */
+.method-head{display:flex;align-items:baseline;gap:12px;margin:24px 0 12px;scroll-margin-top:82px}
+.method-head h3{margin:0;font-size:1.16rem}
+.method-head .sec-num{font-size:11px}
+.methods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:5px;padding:15px 17px;box-shadow:var(--shadow)}
+.mcard .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--accent)}
+.mcard h4{margin:6px 0 6px;font-size:13.5px}
+.mcard p{font-size:12.6px;color:var(--ink-soft);line-height:1.74;margin:0}
+
+/* 深度展开：默认收起，不计入 3 分钟默认阅读量 */
+.deepdive{margin-top:18px;border:1px solid var(--line);border-radius:5px;background:var(--surface);overflow:hidden}
+.deepdive>summary{cursor:pointer;list-style:none;padding:14px 20px;font-size:13.5px;font-weight:650;color:var(--accent);background:var(--accent-soft);border-bottom:1px solid transparent;display:flex;align-items:center;gap:10px}
+.deepdive>summary::-webkit-details-marker{display:none}
+.deepdive>summary::before{content:"+";font-family:var(--mono);font-size:15px;width:18px;height:18px;line-height:17px;text-align:center;border:1px solid #b9d2da;border-radius:3px;flex:none}
+.deepdive[open]>summary{border-bottom-color:var(--line-soft)}
+.deepdive[open]>summary::before{content:"−"}
+.deepdive>summary:hover{background:#dfebee}
+.dd-body{padding:18px 20px}
+.dd-body h4{margin:16px 0 8px;font-size:13.5px;color:var(--ink)}
+.dd-body h4:first-child{margin-top:0}
+.dd-body p,.dd-body li{font-size:13px;color:var(--ink-soft);line-height:1.78}
+.dd-body ul{margin:0 0 12px;padding-left:20px}
+.dd-body li{margin-bottom:6px}
+.dd-body .flow{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:4px;padding:12px 16px;margin:0 0 12px}
+.dd-body .flow b{font-family:var(--mono);font-size:11.5px;color:var(--accent);display:block;margin-bottom:6px}
+.dd-body .flow pre{margin:0}
+.dd-body .note{font-size:12px;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:10px;margin-top:14px}
+
+/* code */
+pre{background:#1f272c;color:#e7ecef;border-radius:5px;padding:14px 18px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.7;margin:12px 0 0}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+pre .c{color:#8fa3ad}
+
+/* footer */
+footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px 0;font-size:12px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.fgrid p{margin:0;line-height:1.72}
+.fgrid b{color:var(--ink-soft);font-weight:650}
+
+/* 内容默认可见：不依赖脚本与观察器，任何环境下都能直接阅读 */
+.reveal{opacity:1}
+
+@media (max-width:1000px){
+  .wrap,.nav-in{padding-left:26px;padding-right:26px}
+  .hero-grid,.split{grid-template-columns:1fr;gap:20px}
+  .trio,.bounds{grid-template-columns:repeat(2,1fr)}
+  .methods{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr;gap:12px}
+}
+@media (max-width:640px){
+  .wrap,.nav-in{padding-left:18px;padding-right:18px}
+  .brand span,.readtime{display:none}
+  .nav-in{gap:12px}
+  .nav-links{gap:16px}
+  .hero{padding:38px 0 32px}
+  section{padding:34px 0}
+  .trio,.bounds,.dims,.methods{grid-template-columns:1fr}
+  .tldr-nums{gap:4px}
+  .table-wrap{overflow-x:auto}
+  table{min-width:0;font-size:12px}
+  th,td{padding:8px 7px}
+  .pill{font-size:10px;padding:2px 6px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+@media print{
+  .nav,#progress{display:none}
+  body{background:#fff}
+  section{padding:20px 0;break-inside:avoid}
+}
+</style>
+</head>
+<body data-page-node-id="VbiWYeORVVvNAQAhJ20yDE" style="">
+<a class="skip" href="#main" data-page-node-id="FDqsJXwzaxpTrefxbhcTa3">跳到正文</a>
+<div id="progress" aria-hidden="true" data-page-node-id="WvP93TjkD38lflEtZeHXP3" style="width:0%"></div>
+
+<header class="nav" data-page-node-id="fFa90cpqGVrvT7IDDfoAAk">
+  <div class="nav-in" data-page-node-id="YjFq6XzaJh0Fe24N8Smy4e">
+    <a class="brand" href="#top" data-page-node-id="nnXqs6ynG6pJOfeZl9UUEh">当知识走进短视频 <span data-page-node-id="i122zSZPHJs6L8p3TuV5ho">SUCCES / RESEARCH NOTE</span></a>
+    <nav class="nav-links" aria-label="章节导航" data-page-node-id="N8bCVAFLPtNnISM0KxchDh">
+      <a href="#intro" data-page-node-id="FbWTLqX7gA0ItFrtDiVsN8" class="active">缘起</a>
+      <a href="#body" data-page-node-id="pMjgI6kcX0J7aAgaKxcshh" class="">主体</a>
+      <a href="#method" data-page-node-id="8hsj13yGig4k6cDoKaRklV" class="">方法</a>
+      <a href="#review" data-page-node-id="Ig0ed9IyCFvBWj0gTGfXMo">反思</a>
+      <a class="alt" href="index.html" title="精简版：约 3 分钟">3 分钟版</a>
+      <span class="readtime" data-page-node-id="Icimwxw0FQktW0GtkIG4dz">约 5 分钟</span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" data-page-node-id="UdVGO9qvgzH1aprXne7Cl6">
+
+<!-- HERO -->
+<div class="hero" id="top" data-page-node-id="BwiUkls6ntJz7rOqrnU8yS">
+  <div class="wrap" data-page-node-id="iLpbXQomPM5jCtcfkiR7YT">
+    <div class="hero-grid" data-page-node-id="JztdfsnpGi9fwt43yQSmEa">
+      <div data-page-node-id="0tet4nowP3bpJEyGCvUvqr">
+        
+        <h1 data-page-node-id="adujPCZEVGJ745hFdWABIh">当知识走进短视频</h1>
+        <p class="sub" data-page-node-id="z2GxdCF6vyg9Nx208OE07u">SUCCES 六维在中文知识类视频中的一次可复现检验</p>
+        <p class="deck" data-page-node-id="wU9kbEBFza5QKjrpTTk8iw">三个独立项目 · 同一套规则项编码表 · 从标题文本走到高赞评论。</p>
+        <div class="chips" data-page-node-id="MDBL2ELsBPwhdptbUPHfW0">
+          <span class="chip solid" data-page-node-id="LolffmLvobAsYBN4knlF1D">只作关联解释，不含因果结论</span>
+          <span class="chip" data-page-node-id="5okNj0KkF3GZDro23S0kIw">预注册先行</span>
+          
+          <span class="chip" data-page-node-id="TfWEL01m9oqYfNKcIjaFhn">公开数据 · 可复现</span>
+        </div>
+      </div>
+      <div class="tldr" data-page-node-id="AbZ7IenGf4iB52p6GM4cDc">
+        <span class="label" data-page-node-id="hsHa2JnfYnx6aF78BaxDjl" style="">三句话看懂​​</span>
+        <p data-page-node-id="sfo8lTIICZP19QtQfIv5A9" style="white-space: pre-wrap;">六维在标题里<strong data-page-node-id="IJ6tWbVA1ETdBWnv54Jy0p">只部分可观测</strong>，可信与故事几乎不出现。
+5,717 条视频里仅「具象」与互动率呈<strong data-page-node-id="ivnOgg0twqB0DHwc78GGVT">有条件正相关</strong>。
+换到评论层，<strong data-page-node-id="4kL057qGmsPjdnxkYVOVMB">0 / 6</strong> 检出正相关。</p>
+        <div class="tldr-nums" data-page-node-id="5jouA0L5hjGHLE4B0XgSeV">
+          <div data-page-node-id="tV7Oy47heEcZmhl3EjbK37"><b data-page-node-id="QJbjqlC7NCB8StcwwruMRQ">1 / 6</b><span data-page-node-id="v6gGNTSD78TE2QlnJZ4BF1">主体获支持假设</span></div>
+          <div data-page-node-id="uRVPADXCvCx85A48R6xOUK"><b class="warm" data-page-node-id="oxwvqtDannKiixekLqTu2u">0 / 6</b><span data-page-node-id="lVRjEEsu0xZemhNu2fExfv">延伸检出正相关</span></div>
+          <div data-page-node-id="MIBitLIn8DCiPVVxdTMLMx"><b class="warm" data-page-node-id="FQJRfeyMKSMtAuWRhr1GF5">2 维</b><span data-page-node-id="hylSKvajaTqO5uIEG2LUyS">近乎测不出</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 00 INTRO -->
+<section id="intro" data-page-node-id="weB4sfvCK3vowEt1iiXsQz">
+  <div class="wrap" data-page-node-id="3NdTbFgkQS1vGNNFjG7E8J">
+    <div class="sec-head reveal" data-page-node-id="0vn9dhryE7VSSW7Sa3IZOk"><span class="sec-num" data-page-node-id="ktE7ZZwpGvVxg0o9EFGv3Z">00</span><h2 data-page-node-id="5j2uW4I8sKB2PcPHvTcGJQ">缘起：知识还能以什么方式抵达我们</h2></div>
+    <div class="split" data-page-node-id="cNa7eNRgb1DrF0VTMEgQFs">
+      <div class="panel reveal" data-page-node-id="2vn5S6PRgHrQcAB7HWuB2O">
+        <p data-page-node-id="VLcBhEUWuvdnR0CMs3n7EE">知识不只存在于课堂。越来越多研究者把知识装进短视频，而一条视频往往只有标题与简介这几秒争取注意力。Chip Heath 与 Dan Heath 在《<em data-page-node-id="wSTBlo0R9gQ63dRG6NLE6f">Made to Stick</em>》（2007）提出的 <strong data-page-node-id="q8tvHWvjdbk9UlhaWvABVz">SUCCES 六法则</strong>，是一组描述性线索，<strong data-page-node-id="6XRaieG8apXWsfg9vfeOHk">不是已被检验的因果规律</strong>。</p>
+        <p data-page-node-id="UAMe6wSMvHyarNgV841use">于是问题收窄成两步：六维能否在公开数据里被<strong data-page-node-id="JHKOgjuvSkfnW0xlqyYcMv">稳定测出</strong>？测出之后，与受众反应的关联能走多远？回答「有没有关联」之前，必须先回答「能不能测」。</p>
+      </div>
+      <div class="panel flexcol reveal" data-page-node-id="w96MHw7iFkbEON9Z0XosFy">
+        <h3 data-page-node-id="2tNozcgoDMwErPnvTogGPU">六个维度，操作化为标题与简介上的规则项命中</h3>
+        <div class="dims" data-page-node-id="uxTEwGwr22dI7twdJz1WcM">
+          <div class="dim" style="--dc:#4c6b8c" data-page-node-id="zRABu95r4HHXETZdwwJLOW"><span class="cn" data-page-node-id="rpZuIXWT5ZicXUCtde6Ze6">简洁</span><span class="en" data-page-node-id="lK0UFzPPudO7AESbbLVPfp">Simple</span><span class="d" data-page-node-id="LbiVLMSMDIjdcJ1FM2nOOD">凝练、去掉冗余术语。</span></div>
+          <div class="dim" style="--dc:#7a5aa6" data-page-node-id="5KxE4K85G0SeDlEhWA3ow9"><span class="cn" data-page-node-id="NFl2rNU7mZS845UW9m21s5">意外</span><span class="en" data-page-node-id="i9DHYE9JGcCi0dDqzjO4hc">Unexpected</span><span class="d" data-page-node-id="QIETwlpoJHNkgJnGiBER4T">反常识或悬念落差。</span></div>
+          <div class="dim" style="--dc:#2f7d6b" data-page-node-id="wSIuYBzFIFbESSJBmx7ApV"><span class="cn" data-page-node-id="pCLLeg2vEGhCHU759S2XFU">具象</span><span class="en" data-page-node-id="Ebze5RBU0jXZlOwXJ4JYkG">Concrete</span><span class="d" data-page-node-id="NZGZ5MBlXFnIiw1BdDSilh">落到数字、单位与实例。</span></div>
+          <div class="dim" style="--dc:#a8662c" data-page-node-id="eHEUYzZ5A4rVCOhSUqEbBt"><span class="cn" data-page-node-id="mAwxue4QfckUf4TADzJKwu">可信</span><span class="en" data-page-node-id="LAnG3iwkSiKTy3DDxy2HbB">Credible</span><span class="d warn" data-page-node-id="44A7NxCHVWxARhZdG9MOBm">给出来源与可核验依据。</span></div>
+          <div class="dim" style="--dc:#b04a5a" data-page-node-id="rm4iRpMwhc6zE56yhr6wQk"><span class="cn" data-page-node-id="MtMInqnW68g4bUBToyCMqp">情感</span><span class="en" data-page-node-id="AsJwO9gbmpuKFPZGLQ3qHf">Emotional</span><span class="d" data-page-node-id="DajFC7OrjeISa9nUt2kief">情绪唤起与切身关联。</span></div>
+          <div class="dim" style="--dc:#5b6b3a" data-page-node-id="UUpTUo9gWihd9eaakfZ35t"><span class="cn" data-page-node-id="HvS4QSw8sBMflpGnxt9xgY">故事</span><span class="en" data-page-node-id="HXXgEEJ52ADrYFEL0YAf00">Stories</span><span class="d warn" data-page-node-id="XpGwc7PEykRiIU6QsJaFOd">人物、时间线与叙事线索。</span></div>
+        </div>
+        <p class="dim-foot" data-page-node-id="dvNT78mlD9werceY93ESdU">只靠标题与简介，<strong data-page-node-id="UPCD4iUG0XkxjBu60GrSMu">可信</strong>与<strong data-page-node-id="qZXiLRiDsHTKlxXF9PTdz6">故事</strong>两维在数千条样本中几乎无变异。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 BODY -->
+<section id="body" data-page-node-id="DH9ykO39LDoq6e00pXK9Iv">
+  <span class="anchor" id="design" data-page-node-id="R7k8cw6lGXsZQUfY6nXRX4"></span>
+  <span class="anchor" id="hypothesis" data-page-node-id="Gp2KmEEkC1tbiBLFahTxxD"></span>
+  <span class="anchor" id="process" data-page-node-id="dMlXKSJkfdOEJRuFpHY9s5"></span>
+  <span class="anchor" id="findings" data-page-node-id="viYHSi401lCCG0XFDZTI9y"></span>
+  <span class="anchor" id="extension" data-page-node-id="GRQo4eWvW85sOAijsoPGnD"></span>
+  <div class="wrap" data-page-node-id="GlkMCjFmvLEpdfErhOYxL2">
+    <div class="sec-head reveal" data-page-node-id="LWTUGvBZcHCRTuF64p4glg"><span class="sec-num" data-page-node-id="43S2d50iUjZRMPsWixR6MZ">01</span><h2 data-page-node-id="J6jeJnmlwm3QqRAfOFHqk7" style="">主体：先定测量，再看结果​</h2></div>
+    <p class="lede reveal" data-page-node-id="YZ2trx1z30aMm6DmXF8EOG" style="">研究问题——❌「SUCCES 有没有用」 ✅六维能否被稳定测量、关联能走多远。</p>
+
+    <div class="trio reveal" data-page-node-id="87w23bWKhTRLif94hnQqYo">
+      <div class="stage" data-page-node-id="MzJwRKnErqKjvebLwr52pS">
+        <span class="tag" data-page-node-id="JFKBrj2UEKiKi4DcjL4vpC">SC_</span><span class="role" data-page-node-id="nVsmwB0M8drS39Prp3REXt" style="">前序 · 自采视频​</span>
+        <h4 data-page-node-id="wv634ylccWijYQhiJNQQ5m">先把测量定下来</h4>
+        <p data-page-node-id="8BRMQDPr1Piw5jG8ZqbdHf">64 条自采视频；两轮盲法 20% 双人编码显示主观语义项无法稳定复现，在看结果前整体排除，只交付规则项编码表。主模型因样本量不足<strong data-page-node-id="OQ4EiPwQ5sE900Wsxs0RqP">从未运行</strong>。</p>
+        <div class="out" data-page-node-id="RbMrf2MpzwOHMrexbFIXJu">交付：编码表 · 自检 11/11</div>
+      </div>
+      <div class="stage main" data-page-node-id="4TW0idcTveQDAMRNLp3nCx">
+        <span class="tag" data-page-node-id="loimhTZF7dGfF4YhvRSi26">SK_</span><span class="role" data-page-node-id="3IjyODLr80djfc07zYSAlw" style="">主体 · Kaggle高赞视频​​</span>
+        <h4 data-page-node-id="EG94rguinXu1xsAjiN4bHz">在大样本上真跑模型</h4>
+        <p data-page-node-id="WRbWXj0L3fkjXpn2UqSxo4">D1 5,717 条（MIT）、D2 962 条（Apache-2.0）；同一词典，预注册冻结后跑 OLS + UP 主聚类稳健 SE + BH-FDR。因变量为<strong data-page-node-id="ilKMigyeqog7Qjp36lkDlr">互动率</strong>而非播放量。</p>
+        <div class="out" data-page-node-id="UxKXaxjiuM1b4vC2bRzLJ9">结果：1 / 6 获支持 · 方向一致 2 / 6</div>
+      </div>
+      <div class="stage" data-page-node-id="NDjF9lHrZjHVDds5qUFwFm">
+        <span class="tag" data-page-node-id="itDtfNIBvIIAx01AWhLR5Z">SW_</span><span class="role" data-page-node-id="RHfwjlQW4ZJLGcma6DIfPC">延伸 · 高赞评论</span>
+        <h4 data-page-node-id="AjMV7O5IxFWnMhkWuA4a9r">换一层构念再看</h4>
+        <p data-page-node-id="DqFHXzxP2UFYQJCNdgVLAB" style="">探究SUCCES是否关联知识获取过程。927 视频 / 2,773 条公开高赞评论；因变量换成评论中的<strong data-page-node-id="uVSLG36FGF7aAEnb1yYrb4">信息性讨论</strong>代理（不等于认知增益），同样做聚类稳健与 BH 校正。</p>
+        <div class="out" data-page-node-id="O8zME4Uqba2rsZnu6OzFFr">结果：0 / 6 · 稳健方向 6/6 一致</div>
+      </div>
+    </div>
+
+    <div class="strip info reveal" data-page-node-id="yyJj14EMZFmWMD1y1gA16b">三项目样本框、数据源与分析单位不同，<b data-page-node-id="8WvT6msjUvURv9N4Xk6AVA">未合并、未互证</b>；共享的只有编码表与「先定测量、再看结果」。口径、许可与逐请求日志见各自项目文档。</div>
+
+    <div class="method-head reveal" id="method" data-page-node-id="5uL03VnEY2Ny91Og1dUI5o"><span class="sec-num" data-page-node-id="LaTvsIFF2oYXZEM1DscQ2G">01 · M</span><h3 data-page-node-id="4N3LRGaZYWaTb7uzuJqtw2">研究方法：四个在看结果之前定下的决定</h3></div>
+    <div class="methods reveal" data-page-node-id="TSy8T0nBmsGSdg8sjIHbCA">
+      <div class="mcard" data-page-node-id="cu2WXaxpYGLCFfUjesuz8P">
+        <span class="k" data-page-node-id="GhKdFa0pw0tvFHmzpPSdB5">01 / 编码</span><h4 data-page-node-id="MHa9x0ckv45FiWoqvxVNzS">规则项-only</h4>
+        <p data-page-node-id="HfdSv06Gjg02kGiXgrHH0z">六维各由 3 个词典 / 正则规则项取有效均值；两轮盲法双编码显示主观语义项无法稳定复现，看结果前整体排除。无字幕、无认证字段一律记 NA，不猜值、不补 0。</p>
+      </div>
+      <div class="mcard" data-page-node-id="E59ecy1f5dxNIExq8ZPnE1">
+        <span class="k" data-page-node-id="NOaPHCR5xtA3OCC7sLfs3S">02 / 数据</span><h4 data-page-node-id="66C1E7w6aMn0nZqAcGeVXA">许可干净、剔除顺序冻结</h4>
+        <p data-page-node-id="lR44O1E7nxmYvmTPf08ZIq">D1（MIT）5,717 条 / 215 UP、D2（Apache-2.0）962 条 / 473 UP，下载记 SHA-256。按预注册顺序去重、剔除非正互动与缺失；许可 Unknown 的原始数据不分发。</p>
+      </div>
+      <div class="mcard" data-page-node-id="Qlqs2jiIPJoSmqiEKyCeZu">
+        <span class="k" data-page-node-id="84IfcEMvORsbPQuomud11b">03 / 因变量</span><h4 data-page-node-id="2l1cPlAjcALL6Ks7KmJEpM">两层构念，两套口径</h4>
+        <p data-page-node-id="YAtuBvaxXr1QI5ATHzR7pF">主体用 log(互动率)＝（赞＋币＋藏＋享＋评）/ 播放，避开推荐分发；延伸用评论级「信息性讨论」（求解提问 ∨ 解释陈述 ∨ 事实复述），只是获取信息的必要非充分痕迹。</p>
+      </div>
+      <div class="mcard" data-page-node-id="XAN9zytaySvOpC6cwwd6rm">
+        <span class="k" data-page-node-id="Y2bGQ8Y8rmAVZt53RLaErn">04 / 模型与判定</span><h4 data-page-node-id="iutZ6SZgYvuhfCwmFjk0N7">OLS / LPM + 聚类稳健</h4>
+        <p data-page-node-id="ifrxBX9llEw6GTynF7Hym1">控制播放、时长、文本长度、发布时间与账号层；按 UP 主聚类的稳健标准误（base R 手写三明治）＋双侧 t ＋六假设内 BH-FDR。β &gt; 0 且 q &lt; 0.05 才算支持。</p>
+      </div>
+    </div>
+
+    <div class="strip hyp reveal" data-page-node-id="8BEjlvnOhzeYx1CHsoyDgu" style="white-space: pre-wrap;"><b data-page-node-id="HXjG2q9q24T4FMzPMmBwuq" style="">假设：H1–H6 全部预设正相关</b>，<span class="formula" data-page-node-id="dydeOpUW8RfLCzcv47lbox">β &gt; 0 且 q<sub data-page-node-id="ReojoTGQ3C8qxusIkGQU30">BH</sub> &lt; 0.05</span> 才算支持；
+方向、模型、剔除顺序与稳健性清单在看到任何关联结果前冻结，稳健性只判断方向，不用来另找显著结果。
+而研究结果如下表所示：</div>
+
+    <div class="table-wrap reveal" data-page-node-id="H1hSC10itFiB69JnJzDk1o">
+      <table data-page-node-id="cexEu8byeOyDkhus82YNdd">
+        <caption data-page-node-id="imoJXvOAoUj0VLhvAyXxGM">主体 <code data-page-node-id="VymjmVVCuIMzp5lj0D552T">SK_</code> · D1（N = 5,717，G = 215 UP），因变量 log(互动率)；q 为六假设内 BH-FDR 校正值。</caption>
+        <colgroup data-page-node-id="ArFR9HIoefoBEr8J1ZaL9N"><col style="width:8%" data-page-node-id="IV2gZbtShBrA8wbxvBod5Y"><col style="width:25%" data-page-node-id="9QvhvjMYOpdUoRdLKLFFyp"><col style="width:14%" data-page-node-id="RsRGELe3f8DSlpY2kD26mp"><col style="width:14%" data-page-node-id="tV0sWDmv3Ovn1XX9W5UYl2"><col style="width:39%" data-page-node-id="cIiJfw45UCGt7gO6aevj1n"></colgroup>
+        <thead data-page-node-id="MkLhGrz22oMg6Yuisfh8vi"><tr data-page-node-id="BXbf67uzU2C7GYHGUS7Zbf"><th data-page-node-id="fBSFCyItnPJ0iKlwaGunte">假设</th><th data-page-node-id="znMK8QgE75jzFL2ad7oICL" style="text-align: center;">维度</th><th class="num" data-page-node-id="HOnBkgG3OX9clJmYLWFktc" style="text-align: center;">β</th><th class="num" data-page-node-id="UvtBDgYybpK2FFBzJSeEMm" style="text-align: center;">q (BH)</th><th data-page-node-id="iB0vS6lzHQpLcsizAzSRjs" style="text-align: left;">判定</th></tr></thead>
+        <tbody data-page-node-id="88wtpsJwbtxxk8veC9lxex">
+          <tr data-page-node-id="lzuKzL5tldHHQhTFCruUXF"><td data-page-node-id="B8dPxiN96vj0ttIIiP6WoT">H1</td><td data-page-node-id="OuRQIVFfZBrTID81uT7z9T">Simple 简洁</td><td class="num" data-page-node-id="1Y1JUFaRXcTLAfxFgyrvWi" style="text-align: center;">−0.1219​</td><td class="num" data-page-node-id="X9exrJ5V9AVkFvrTUSJaan" style="text-align: center;">0.3892</td><td data-page-node-id="eEruMEQG5msaMvK5hOYm9m"><span class="pill" data-page-node-id="yhjOCkyrCB5F3eMsG1PZ0v" style="text-align: center;">方向相反且不显著</span></td></tr>
+          <tr data-page-node-id="AhGYxcdk5NuKrmxxIrZjtg"><td data-page-node-id="1dkclSaRaBnBz9kjmtphVq">H2</td><td data-page-node-id="RSdqj1rFVyjxPETQd9zQIn">Unexpected 意外</td><td class="num" data-page-node-id="CNrUUzPFf5ul0Xsy5zTNR6">−0.0915</td><td class="num" data-page-node-id="NGcif3O6ZAuTnQGQ2WbHn9">0.1010</td><td data-page-node-id="yfGuJAh6QoInBcd5DLbNKB"><span class="pill" data-page-node-id="zU5fyYu6wbbYIPlMWMBFcP">BH 后不算发现</span></td></tr>
+          <tr class="hit" data-page-node-id="NuH4y0Gxpb0S8kJ8g872uu"><td data-page-node-id="0Thjcn8HaAaO48ojWgborF">H3</td><td data-page-node-id="frlHFnkZP2GVpU0s6iOFOB">Concrete 具象</td><td class="num" data-page-node-id="uYOTYOxFn4F2uewxm9dFCr">+0.0891</td><td class="num" data-page-node-id="D8g5C67jRDLO9vlzYSk6vO">0.0292</td><td data-page-node-id="voR3RWX0GL4B3LS1ZsSQ76"><span class="pill ok" data-page-node-id="QsMBLF6o1F9GfcJm6ZcAJc">获得支持</span></td></tr>
+          <tr data-page-node-id="AmhYIXIx6gJdizclR7sUBt"><td data-page-node-id="sfdNnuHRkzNLmvRtai8too">H4</td><td data-page-node-id="G747IgbT9XtGMchSHAwmWo">Credible 可信</td><td class="num" data-page-node-id="vcHOQDxqxK1of8FHlReRBb">+0.0619</td><td class="num" data-page-node-id="0YIJ68PX6jqtWDLZ7F8zmN">0.4003</td><td data-page-node-id="y9SpsFp0IiXv8tJgDcrjLV"><span class="pill" data-page-node-id="JEUhqiTOLofuxq9iRBBbRL">方向一致但不显著</span></td></tr>
+          <tr data-page-node-id="5EBWfjKMrfWBmhtAMFmQ3K"><td data-page-node-id="xaeWj7323fMpqiNW5Ilk9x">H5</td><td data-page-node-id="a8VNr69CfSeTFNB6Alf45A">Emotional 情感</td><td class="num" data-page-node-id="Ki2JEDbC1WGU4qNuXH6y6e">+0.0740</td><td class="num" data-page-node-id="0cAnfULiAAbENdlW4jIlo1">0.3892</td><td data-page-node-id="zaHbvWq4ThRT0tTJiyDQaS"><span class="pill" data-page-node-id="VbZUXC63PsIBXsbna1DPgI">方向一致但不显著</span></td></tr>
+          <tr data-page-node-id="iHUdvF6FqEsRtq6JKheCo9"><td data-page-node-id="A1a83eCCruL436IWDjMJYX">H6</td><td data-page-node-id="R70zPxo8m0oWfp8nYI0QDG">Stories 故事</td><td class="num" data-page-node-id="IzFcyFxSj1VBBBSw3Y3yJr">+0.0992</td><td class="num" data-page-node-id="bJAg0hqDf63wUl44AgKF38">0.3892</td><td data-page-node-id="mU3yqCFIp1WZjPWaSQMAbF"><span class="pill" data-page-node-id="D0FpF7KBojw9sv8i0xsiYb">方向一致但不显著</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="strip reveal" data-page-node-id="XFZHeGYGIHXV1rqgcH40go" style="white-space: pre-wrap;">唯一支持的 <b data-page-node-id="6ckFXDu8EyvCllLELo1Jmm">H3 效应温和</b>：95% CI [+0.0274, +0.1508]，Concrete 每 +0.1 对应互动率约 +0.89%，换收藏率、去极值仍正向显著。<b data-page-node-id="GYvxPA1uT5sZjm7obuE773">两处主动不采用：</b>H2 原始 p = 0.0337 → q = 0.1010 不算发现；另一数据集的极端系数为稀疏伪估计，不可解读。
+其中，这条结论伴随着三条限制：</div>
+
+    <div class="bounds reveal" data-page-node-id="6YjkmohoRXgkYxkuHuA0bd">
+      <div class="bound" data-page-node-id="OFexg7KToskwXUgzCZJJqx"><span class="k" data-page-node-id="jY0KhTuF1VtCVeLzfrICmQ">BOUNDARY 01</span><h4 data-page-node-id="9tlspkMZ7UbiVPtVCCI4Xg">依赖账号层控制</h4><p data-page-node-id="khook3S9JNqm0zqvkFktrR">去掉 UP 主固定效应后 H3 降到 +0.029 且不再显著，另两维反而「显著」——不控制账号会讲出完全不同的故事。</p></div>
+      <div class="bound" data-page-node-id="vFuqciTdp2unLicA5iuWOq"><span class="k" data-page-node-id="h3pCqMp7dnGcvfzkWOwn8S">BOUNDARY 02</span><h4 data-page-node-id="sDmF4HqMHfdv4BPU2BpiLT">跨领域没有复现</h4><p data-page-node-id="ZdxeOep6UP84xPE9ReKFzS">另一领域 962 条里 H3 = −0.0638（q = 0.9429），方向一致仅 2 / 6：外部效度检验未通过。</p></div>
+      <div class="bound" data-page-node-id="oGFBAvm07O23EX5LHGgaRB"><span class="k" data-page-node-id="N5CO5AVlK3g8c5euth8fIY">BOUNDARY 03</span><h4 data-page-node-id="L2YIKXxyVsCLFvien4fE46">测量天花板</h4><p data-page-node-id="Aonlk7e3sHwUKqqHDEnJpm"><code data-page-node-id="2LptbRQaICaAstZEczHDbA">s_credible</code> 95.1%、<code data-page-node-id="fyARF5F50mkMYsIHKadJAW">s_stories</code> 95.3% 为零；样本从 64 扩到 5,717 仍无变异，瓶颈在操作化而非样本量。</p></div>
+    </div>
+
+    <div class="strip warn reveal" data-page-node-id="7ZAKAyRevguj5nIgeh7IGi"><b data-page-node-id="GgCu7HiOOAU950A98xTbPK" style="">延伸：​</b>换成评论层信息性讨论后 0 / 6 获支持（H3 = −0.0120，q = 0.732），四个稳健设定方向 6/6 一致；显式学习表述仅 13 / 2,773（0.47%），原想测的构念在此类热评中近乎不可测。互动率、评论文本、认知增益是三层不同构念，不矛盾也不能互证；这是「未检出正相关」，不是「SUCCES 无效」。</div>
+
+    <details class="deepdive reveal" data-page-node-id="Vj16rYvujzPCY2QTUP0oNX">
+      <summary data-page-node-id="3xhPG0A2ZRLgG7E0alTLRW" style="">展开：结论是怎么跑出来的​​</summary>
+      <div class="dd-body" data-page-node-id="M3OVSVT78kJ1wIOFd5h3qC">
+        <h4 data-page-node-id="61NAiw50AGL3ZR0lbGEPEE">一、数据流：只有最后一步产出系数</h4>
+        <div class="flow" data-page-node-id="vm2cvkLPnVbfXgI5MeaFoq">
+          <b data-page-node-id="Zwdb2InG1oTDzIBJdiyxAU">主体 SK_ · succes-kaggle/</b>
+          <pre data-page-node-id="vNowc2blqL5Y3A8obzCqia"><code data-page-node-id="T0eIfeMwardf95xP5kHagk">SK_download.py   → data/external/*.zip              # 免登录下载，记 SHA-256
+SK_prepare.py    → data/processed/SK_coded_D1.csv / D2.csv
+                   # 清洗 + 18 规则项 + 六维得分；只做描述性体检，不碰回归
+R/SK_analyze.R   → output/SK_results.txt / SK_coefficients.csv / SK_robustness.csv
+                   # 唯一产出 β / q / CI 的地方</code></pre>
+        </div>
+        <div class="flow" data-page-node-id="q80ZDsSZ1QkIUrbNa0XD5p">
+          <b data-page-node-id="TjQ0xLQmdTAht4w1Z0emm6">延伸 SW_ · succes-weekly/</b>
+          <pre data-page-node-id="SxFPnd0Vr6nZKtr8ZHlzwS"><code data-page-node-id="5iVYYdQSj0vgYolnkCavjI">SW_collect.py    → data/raw/SW_comments_{dev,main,control}.csv  # 按 bvid 抓公开热评
+SW_prepare.py    → data/processed/SW_analysis.csv             # 评论级分析表，每行一条热评
+R/SW_analyze.R   → output/SW_results.txt / SW_coefficients.csv / SW_robustness.csv</code></pre>
+        </div>
+        <p data-page-node-id="DEOH6sUCj0AFF104QsHox0">「准备」与「推断」严格分开：两个 <code data-page-node-id="GPkgDUQMvGC8bQ12ukNeCf">*_prepare.py</code> 明确不计算六维与因变量的任何关联，系数只在 R 脚本里出现。这样既能在看结果前冻结口径，也便于逐行审计。</p>
+
+        <h4 data-page-node-id="ilHwqHxtHLchCqj2atBfso">二、关键代码在做什么</h4>
+        <ul data-page-node-id="Uo3OtSxD9P20gsXWCnVbza">
+          <li data-page-node-id="xB5FVBrQaVBPcSGIFqm46X"><b data-page-node-id="1Az21XfyFngjwGFj8YXxgA">编码表</b>：<code data-page-node-id="VKphrx9zmHRA9XPn7dOzYv">SK_codebook.py</code> / <code data-page-node-id="Za74xjhNG6GyFX5aEpSto9">SW_succes.py</code> 逐项移植 LEX v0.2 词典与 18 个规则项，<code data-page-node-id="yfhlNQNj7drWvpmOMnKCKj">DIM_MAP</code> 每维 3 项，<code data-page-node-id="YbOxBmFxdVIG4DFGKwqMJb">code_row()</code> 返回 18 项、六维均值与 <code data-page-node-id="AcmtzDNRohhShNpEALogtX">n_valid</code>；<code data-page-node-id="qsyvOhjgDm8XSgmgB4dcuu">u4</code>（字幕）、<code data-page-node-id="X14EWbE12PCjEEis9DrotB">cr4</code>（认证）不可得即记 None。三个项目词典一致，不新增词、不改阈值。</li>
+          <li data-page-node-id="agiNPYOEpuFUrJPnHl0V8e"><b data-page-node-id="ACIyQe8ZRO0a3Y3isEoBdF">推断核心</b>：<code data-page-node-id="kufdximWQf7BjMItOSgQrJ">R/SK_analyze.R</code> 的 <code data-page-node-id="jxcXGVjyHbhBhkEfRyWHga">cluster_vcov()</code> 手写三明治 <code data-page-node-id="6FVyFSAHFyoAw401hSOrIF">V = adj · (X'X)⁻¹ · Σ_g(X_g'u_g u_g'X_g) · (X'X)⁻¹</code>，用 <code data-page-node-id="t4CUWJYBQmDs3WSDGqywL7">summary(fit)$cov.unscaled</code> 避开 aliased 列，小样本校正 <code data-page-node-id="fWwl2M9CnxNSIwbHEJ5whp">G/(G−1)·(n−1)/(n−k)</code>；<code data-page-node-id="9PCQWfsOlODa6WiiTyZkvO">df = G−1</code> 算双侧 p，再 <code data-page-node-id="RwObv4yNHKnwINvF35uKVf">p.adjust(p, "BH")</code>，最后按 <code data-page-node-id="Gd9JD9DDE1OlXJWmDF8txl">beta &gt; 0 &amp; q &lt; 0.05</code> 判定。全程只用 base R 的 <code data-page-node-id="U3GDmpdK5tpbn18UTiuGyG">lm / pt / p.adjust</code>。</li>
+          <li data-page-node-id="RyqUBQcE5FBVBsIppH2T9X"><b data-page-node-id="GLyLYmCTTAZZfzc3yX8dKf">稳健性</b>：S1–S6 写成 <code data-page-node-id="pP0YQbyCrBCjpuYifcTda4">specs</code> 列表按预注册顺序一次跑完（换收藏率 / 分享率、去两端 1%、去 UP 固定效应、<code data-page-node-id="5Lrux9wIWWnmomDOoVIxh5">cr4</code> 设 0、换 D2），不事后挑子集；<code data-page-node-id="vpJI3HghYW5MPTcdUAkZcK">R/SW_analyze.R</code> 复用同一个 <code data-page-node-id="KuLO723bbwyMqidv7Se5Os">cluster_vcov()</code>，把 aliased / NA 系数标「不可估」，把 9 / 434 非零撑出的稀疏伪估计标 <code data-page-node-id="uKlSSDPZeAsCDFSbJJNVxC">sparse_flag</code>，不让它进结论。</li>
+          <li data-page-node-id="z6cLjHtorqg7GdHg8BhGfH"><b data-page-node-id="rWGypj1sVolMwVrIxtLiZV">延伸因变量</b>：<code data-page-node-id="4TRAEGS2U3AYpXYMAs5Fmn">SW_info_markers.py</code> 定义 <code data-page-node-id="lDshFH2pwRftXIdqG2BfFc">info_discussion = ask ∨ explain ∨ fact</code>（求解提问 / 解释性陈述 / 事实复述，均为正则规则项）；开发集 180 条审计发现显式学习表述近乎 0 命中，故在看关联之前更换主因变量，并整体排除开发集。</li>
+        </ul>
+
+        <h4 data-page-node-id="1oAwevTIHa9wGbEU1GHDfH" style="">三、结论​</h4>
+        <ul data-page-node-id="gGWOTpu87A6fHAm37NJBoa">
+          <li data-page-node-id="VOochiBGDlxgqjFOD94ZEC"><b data-page-node-id="V2r3lRMGGxx9TaccNkZBi0">主体</b>：1 / 6 获支持 —— H3 Concrete β = +0.0891、q = 0.0292、95% CI [+0.0274, +0.1508]，每 +0.1 约 +0.89% 互动率；换收藏率与去极值仍稳，但去掉 UP 主固定效应后 +0.029 不显著，D2 为 −0.0638（q = 0.9429）、方向一致仅 2 / 6。</li>
+          <li data-page-node-id="oLlBOvm6Xtuh0XDsCQcTZo"><b data-page-node-id="YZXZ9FKCH5uspOuhdZdTl8">延伸</b>：0 / 6 检出正相关 —— H3 = −0.0120（q = 0.732），S1 / S2 / S4 / S6 四个设定方向 6 / 6 一致；显式学习表述仅 13 / 2,773（0.47%），「观众获取信息」在这类高赞热评中近乎不可测。</li>
+        </ul>
+
+        
+        <ul data-page-node-id="ryNH3hhVi0Kc2O0p9nnf76">
+          
+          
+          
+        </ul>
+        
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 02 REVIEW -->
+<section id="review" data-page-node-id="d4GqMqb6YMxfJjUnOEEmFV">
+  <div class="wrap" data-page-node-id="vhpjyTcanLAAlYBcOAeTxR">
+    <div class="sec-head reveal" data-page-node-id="YvNCZKDDrGrxVRNk3GE56d"><span class="sec-num" data-page-node-id="mbhX1B6ESXNaVPISUKlb7B">02</span><h2 data-page-node-id="K3ATgDLPKt4RBZD3VkSTYK">反思：交付的不是答案，是一份边界地图</h2></div>
+    <div class="split" data-page-node-id="tmSgjE0hzpovkA7DgEST9x">
+      <div class="panel reveal" data-page-node-id="AFLqYASS84o8uziaJTR4T0">
+        <h3 data-page-node-id="6ev7Rx028ssGAQZNCn6Fai">我们实际上测了什么</h3>
+        <p data-page-node-id="ZcfxSx1bnd9q74jb64Jtsp">测的是<strong data-page-node-id="zwAlnB6oDHJGFJxE0d3H2y">标题与简介上的词典命中</strong>，不是构念本身或内容质量；观察性数据无法分离推荐流、封面、账号体量与反向改标题的路径，样本框也非随机。</p>
+        <h3 style="margin-top: 18px; white-space: pre-wrap;" data-page-node-id="y2nKzgoce9BNv4Xe5leMay">能得出的三点结论​</h3>
+        <ul data-page-node-id="XaW5zluftz8DSBaYmlf3Bz">
+          <li data-page-node-id="Wqti9xa2nFZjBdxzJBmRCT">六维在标题层<strong data-page-node-id="fNlwtsD8cFvx4Z2ZX57HiI">部分可观测</strong>，可信与故事两维几乎不出现。</li>
+          <li data-page-node-id="Av6n01KE01pNAc52jwOmbD">唯一稳住的关联是「具象」，效应温和、依赖账号层控制、跨领域未复现。</li>
+          <li data-page-node-id="BVwepNDbsNEamxs1rj0N8D">换到评论层的信息性讨论后，六条假设一条也未检出正相关。</li>
+        </ul>
+      </div>
+      <div class="panel tint reveal" data-page-node-id="QodzRWTUFbc5I0eBiasKJM">
+        <h3 data-page-node-id="GTQm9qNiSRWZhn1RtdLOBW">下一步：把编码推进到视频内容本体</h3>
+        <p data-page-node-id="5N6PFZFDxYpvTXLIuBC8RA">不是再扩样本，而是<strong data-page-node-id="booAv9ViVAwUN90YSGFHck">换编码对象</strong>：ASR 字幕、画面 OCR、叙事结构标注，让可信与故事有被观测到的机会。硬前提是先重写编码手册、跑通信度，再谈建模。</p>
+        <h3 style="margin-top:18px" data-page-node-id="TYZvs7iKAcH57esdL6LBZe">复现</h3>
+        <p class="small" data-page-node-id="WhN6AcByzrR8HzA6fuV6Yp">分析层只用 base R，不联网、不需安装包；完整命令见仓库 <code data-page-node-id="IBlEXBHFlDHjVGaLeeRdEW">docs/REPRODUCE.md</code>。</p>
+        <pre data-page-node-id="Rt7laKPGgAWvsOO2tIHKT6"><code data-page-node-id="XaScipndWTp6TR9RIh03vf"><span class="c" data-page-node-id="IqDwutEV1AVBhRvHu4fK8S"># SC_ · 本仓库</span>
+Rscript R/SC_mvp.R &amp;&amp; Rscript R/SC_kappa.R
+<span class="c" data-page-node-id="AnpZuy7ytQdBrc4UHxSMJQ"># SK_ · succes-kaggle/</span>
+python3 SK_download.py &amp;&amp; python3 SK_prepare.py &amp;&amp; Rscript R/SK_analyze.R
+<span class="c" data-page-node-id="tcFgXrLDLIJ4OAM39DzsBX"># SW_ · succes-weekly/（只读复现）</span>
+python3 SW_prepare.py &amp;&amp; Rscript R/SW_analyze.R</code></pre>
+      </div>
+    </div>
+    <div class="answer reveal" data-page-node-id="THA3wsA47h3EQnTukvCctZ">这份材料回答不了「SUCCES 是否有效」，只能回答：在这几个可复现的操作化下，哪些关联被检出、哪些没有。它更适合作为描述性启发框架，而非已被检验的因果机制。</div>
+    <div class="strip reveal" style="margin-top:16px" data-page-node-id="EKaLWJTrbSkLtfEUTt6goL">本页是<strong data-page-node-id="PqGTLoOdV8Li3wswM4QrTq">系列整合叙述</strong>，承载于前序 <code data-page-node-id="NAEoRQRURTwX7jncTkmMOq">SC_</code> 公开版仓库；系数、q 值与样本量来自独立的 <code data-page-node-id="ip0tK8lf3mpa2lVZhjL5ox">SK_</code> / <code data-page-node-id="FCGYl0eVCqkH8yVmekcuZa">SW_</code> 项目，<strong data-page-node-id="ciuewf43yMvngjXkMDGXAn">不是本仓库脚本产出</strong>，本仓库「无实证发现、主模型未运行」的状态不变。完整文字版见 <code data-page-node-id="cUMp4bcsHO9OaGSxxdjs8c">REPORT.md</code>。</div>
+  </div>
+</section>
+
+</main>
+
+<footer data-page-node-id="qfrQxpkaqJGgMOT6C78GjQ">
+  <div class="wrap fgrid" data-page-node-id="RZyWPJCm1CoOg7R3WpmcLY">
+    <p data-page-node-id="CetiRdP51PvqEatYIyeOMo"><b data-page-node-id="S4UkkHlChmByaADWSyknWb">数据与复现</b>　公开元数据与聚合结果；不含用户个人信息、评论正文或凭据。预注册、编码手册与日志随各自项目发布。</p>
+    <p data-page-node-id="rLM88S2MjTHwOSk0jMJR0D"><b data-page-node-id="X8BeG4W3gCrD850ENHJVA7">许可</b>　代码 MIT。主体数据为 Kaggle D1 MIT / D2 Apache-2.0；延伸数据源许可 Unknown，原始 CSV 与评论正文不分发。</p>
+    <p data-page-node-id="AICNWDS2jRTtaPgKC64xGv"><b data-page-node-id="LPB7RE7AhkaGLJnCyLiQTc">框架出处</b>　SUCCES 引自 Chip Heath &amp; Dan Heath，《Made to Stick》(2007)，仅作学术分析对象；本页不含因果或效果承诺。</p>
+  </div>
+</footer>
+
+<script data-page-node-id="syCBAI274hLx8xNTv2PqWE">
+(function(){
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    var pos = 120, current = null;
+    sections.forEach(function(s){ if (s && s.getBoundingClientRect().top <= pos) current = s.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+
+</body></html>
