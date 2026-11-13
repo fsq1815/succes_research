@@ -26,6 +26,8 @@ R_libs/
 !/index.html
 # one-pager.html is the long-form research note page, also served on GitHub Pages
 !/one-pager.html
+# one-pager-en.html is the English translation of the research note, also served on GitHub Pages
+!/one-pager-en.html
 *.pdf
 *.nb.html
 

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" data-page-node-id="gWTd4vSW1vaiJLWYA5Hcsx" style=""><head data-page-node-id="8NIk6irrjJFurZiQNssMkC">
+<meta charset="UTF-8" data-page-node-id="HnwUpETAq2mGNtNRDUOIIG">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="o8eWj8wlYYdbJERK57FiGp">
+<meta name="description" content="A reproducible test of the SUCCES dimensions in Chinese knowledge short videos: three independent studies, one shared rule-based codebook, and an honest record of measurement boundaries. About 5 minutes to read." data-page-node-id="xW0VSCYOo0i3eOe50tljFE">
+<meta name="color-scheme" content="light" data-page-node-id="PjDzQeHowT1jeQdkxRJUIV">
+<title data-page-node-id="hAtdG07rgk5Trr1GkaDxqB">When Knowledge Goes Short-Form · A Reproducible Test of the SUCCES Dimensions</title>
+<style data-page-node-id="F3Zs92tdG7V7hn5t74Dv15">
+:root{
+  --page:1280px;
+  --bg:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f4f2ed;
+  --ink:#1d252b;
+  --ink-soft:#3d4a52;
+  --muted:#68737c;
+  --line:#e3e0d9;
+  --line-soft:#edeae4;
+  --accent:#2c5a6c;
+  --accent-soft:#e9f1f3;
+  --warm:#a95b2c;
+  --warm-soft:#fbf1e8;
+  --ok:#2f7565;
+  --ok-soft:#eaf3f0;
+  --shadow:0 1px 2px rgba(28,37,43,.04),0 8px 28px rgba(28,37,43,.05);
+  --serif:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  --mono:"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15.5px;line-height:1.8;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(44,90,108,.3)}
+a:hover{border-bottom-color:var(--accent)}
+::selection{background:#d8e8ec;color:var(--ink)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* All content blocks share one width: justified to the same grid line */
+.wrap{max-width:var(--page);margin:0 auto;padding:0 40px}
+/* Grid children may shrink so long code lines never break narrow screens */
+.hero-grid>*,.split>*,.trio>*,.bounds>*,.methods>*,.fgrid>*{min-width:0}
+pre{max-width:100%}
+p,li,.just,caption,.box p,.card p,.stage p,.bound p,.panel p,.dim .d,.fgrid p,.answer,.strip{
+  text-align:justify;text-justify:inter-word;text-align-last:left;
+}
+
+/* progress + nav */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;transition:width .1s linear}
+.nav{
+  position:sticky;top:0;z-index:50;background:rgba(250,249,246,.92);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--page);margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:24px;height:56px}
+.brand{font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.02em;white-space:nowrap;color:var(--ink);border:0}
+.brand span{color:var(--muted);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.08em;margin-left:8px}
+.nav-links{display:flex;gap:22px;flex:1;justify-content:flex-end;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);white-space:nowrap;border:0;padding:4px 0;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a.active{font-weight:600}
+.langswitch{display:inline-flex;align-items:center;border:1px solid #cfe0e5;border-radius:999px;overflow:hidden;flex:none;background:var(--surface);font-size:11.5px}
+.langswitch a,.langswitch .on{display:inline-block;padding:3px 12px;line-height:1.6;white-space:nowrap;border:0}
+.langswitch a{color:var(--muted)}
+.langswitch a:hover{background:#dfeaee;color:var(--accent)}
+.langswitch .on{background:var(--accent);color:#fff;font-weight:650}
+.readtime{font-size:11px;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border:1px solid #cfe0e5;padding:3px 10px;border-radius:999px;white-space:nowrap}
+
+/* hero */
+.hero{padding:52px 0 42px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(44,90,108,.07),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:stretch}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 16px}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,4.4vw,3.5rem);line-height:1.2;letter-spacing:.01em;margin:0 0 14px;font-weight:600}
+.hero .sub{font-family:var(--serif);font-size:clamp(1.02rem,1.8vw,1.3rem);color:var(--ink-soft);margin:0 0 14px;line-height:1.55}
+.hero .deck{color:var(--muted);font-size:14.5px;margin:0 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:11.5px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink-soft)}
+.chip.solid{background:var(--accent-soft);border-color:#cfe0e5;color:var(--accent)}
+.tldr{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:5px;padding:22px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.tldr .label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:650;margin-bottom:10px}
+.tldr p{font-size:14px;color:var(--ink-soft);line-height:1.78;margin:0 0 16px}
+.tldr p strong{color:var(--ink)}
+.tldr-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto;border-top:1px solid var(--line-soft);padding-top:14px}
+.tldr-nums div{text-align:center}
+.tldr-nums b{display:block;font-family:var(--mono);font-size:1.28rem;color:var(--accent);line-height:1.3}
+.tldr-nums b.warm{color:var(--warm)}
+.tldr-nums span{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* sections */
+section{padding:46px 0;border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.08em;flex:none}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2rem);font-weight:600;line-height:1.35;margin:0;letter-spacing:.01em}
+h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin:0 0 8px;line-height:1.5}
+h4{font-size:13.5px;font-weight:650;margin:0 0 6px;letter-spacing:.02em}
+.lede{font-size:16px;color:var(--ink-soft);margin:0 0 22px;line-height:1.85}
+p{margin:0 0 12px}
+p:last-child{margin-bottom:0}
+.small{font-size:12.5px;color:var(--muted);line-height:1.75}
+strong{font-weight:650}
+em{font-style:normal;background:linear-gradient(transparent 62%,#e6eff1 62%);padding:0 2px}
+code{font-family:var(--mono);font-size:.85em;background:var(--surface-2);padding:2px 5px;border-radius:3px;color:var(--ink-soft)}
+.anchor{display:block;height:0;overflow:hidden;scroll-margin-top:82px}
+
+/* two-column split: both edges flush with the container */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:22px 24px;box-shadow:var(--shadow)}
+.panel.flexcol{display:flex;flex-direction:column}
+.panel.flexcol .dims{flex:1;align-content:space-evenly}
+.panel p{font-size:14px;color:var(--ink-soft);line-height:1.82}
+.panel.tint{background:var(--accent-soft);border-color:#d3e3e8}
+.panel ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.8;color:var(--ink-soft)}
+.panel ul li{margin-bottom:6px}
+.panel ul li:last-child{margin-bottom:0}
+
+/* six dimensions */
+.dims{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0}
+.dim{border:1px solid var(--line);border-left:3px solid var(--dc);border-radius:4px;padding:11px 14px;background:var(--surface);display:flex;align-items:baseline;gap:10px}
+.dim .cn{font-family:var(--serif);font-size:1.02rem;font-weight:600;white-space:nowrap}
+.dim .en{font-size:10.5px;letter-spacing:.06em;color:var(--dc);font-weight:650;white-space:nowrap}
+.dim .d{font-size:12px;color:var(--muted);line-height:1.6}
+.dim .d.warn{color:var(--warm)}
+.dim-foot{margin-top:10px;font-size:12px;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:9px}
+
+/* stages */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:18px 20px;box-shadow:var(--shadow)}
+.stage.main{border-color:#c6dbe1;background:linear-gradient(180deg,#fff,#f7fbfc)}
+.stage .tag{font-family:var(--mono);font-size:10.5px;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:3px;letter-spacing:.04em}
+.stage .role{font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-left:8px}
+.stage h4{margin:10px 0 6px;font-family:var(--serif);font-size:1.08rem}
+.stage p{font-size:12.8px;color:var(--ink-soft);line-height:1.76;margin:0}
+.stage .out{font-size:12px;color:var(--accent);border-top:1px solid var(--line-soft);margin-top:12px;padding-top:10px;font-family:var(--mono)}
+
+/* one-line notes / strips */
+.strip{border:1px solid var(--line);border-radius:5px;background:var(--surface);padding:13px 20px;margin-top:16px;font-size:13.2px;color:var(--ink-soft);line-height:1.78}
+.strip.info{background:var(--accent-soft);border-color:#d3e3e8;border-left:3px solid var(--accent)}
+.strip.warn{background:var(--warm-soft);border-color:#eed9c6;border-left:3px solid var(--warm)}
+.strip.hyp{background:var(--surface-2)}
+.strip b{color:var(--ink)}
+.formula{font-family:var(--mono);font-size:12.5px;color:var(--accent);background:var(--surface);padding:2px 8px;border:1px solid var(--line);border-radius:3px;white-space:nowrap}
+
+/* table: full width, flush with the text blocks */
+.table-wrap{margin-top:18px;border:1px solid var(--line);border-radius:5px;background:var(--surface);overflow:hidden}
+table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:13.5px}
+th,td{padding:11px 16px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+th{background:var(--surface-2);font-size:11.5px;letter-spacing:.06em;color:var(--muted);font-weight:650;text-align:left;white-space:nowrap}
+td{text-align:justify;text-justify:inter-word;text-align-last:left}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.num{text-align:right}
+tr:last-child td{border-bottom:0}
+tr.hit{background:#f2f8f6}
+tr.hit td{font-weight:600;color:var(--ink)}
+.pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.pill.ok{background:var(--ok-soft);color:var(--ok);border-color:#cfe4dc}
+caption{caption-side:bottom;font-size:12px;color:var(--muted);padding:11px 16px;line-height:1.7;border-top:1px solid var(--line-soft)}
+
+/* boundary cards */
+.bounds{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.bound{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--warm);border-radius:5px;padding:16px 18px;box-shadow:var(--shadow)}
+.bound .k{font-family:var(--mono);font-size:10.5px;color:var(--warm);letter-spacing:.08em}
+.bound h4{margin:6px 0 6px;font-size:14px}
+.bound p{font-size:12.8px;color:var(--ink-soft);line-height:1.76;margin:0}
+
+/* answer */
+.answer{font-family:var(--serif);font-size:1.28rem;line-height:1.7;color:var(--ink);padding:20px 24px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:5px;background:var(--surface);margin-top:18px}
+
+/* Research method: four quick-read cards */
+.method-head{display:flex;align-items:baseline;gap:12px;margin:24px 0 12px;scroll-margin-top:82px}
+.method-head h3{margin:0;font-size:1.16rem}
+.method-head .sec-num{font-size:11px}
+.methods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:5px;padding:15px 17px;box-shadow:var(--shadow)}
+.mcard .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--accent)}
+.mcard h4{margin:6px 0 6px;font-size:13.5px}
+.mcard p{font-size:12.6px;color:var(--ink-soft);line-height:1.74;margin:0}
+
+/* Deep dive: collapsed by default, excluded from the default reading time */
+.deepdive{margin-top:18px;border:1px solid var(--line);border-radius:5px;background:var(--surface);overflow:hidden}
+.deepdive>summary{cursor:pointer;list-style:none;padding:14px 20px;font-size:13.5px;font-weight:650;color:var(--accent);background:var(--accent-soft);border-bottom:1px solid transparent;display:flex;align-items:center;gap:10px}
+.deepdive>summary::-webkit-details-marker{display:none}
+.deepdive>summary::before{content:"+";font-family:var(--mono);font-size:15px;width:18px;height:18px;line-height:17px;text-align:center;border:1px solid #b9d2da;border-radius:3px;flex:none}
+.deepdive[open]>summary{border-bottom-color:var(--line-soft)}
+.deepdive[open]>summary::before{content:"−"}
+.deepdive>summary:hover{background:#dfebee}
+.dd-body{padding:18px 20px}
+.dd-body h4{margin:16px 0 8px;font-size:13.5px;color:var(--ink)}
+.dd-body h4:first-child{margin-top:0}
+.dd-body p,.dd-body li{font-size:13px;color:var(--ink-soft);line-height:1.78}
+.dd-body ul{margin:0 0 12px;padding-left:20px}
+.dd-body li{margin-bottom:6px}
+.dd-body .flow{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:4px;padding:12px 16px;margin:0 0 12px}
+.dd-body .flow b{font-family:var(--mono);font-size:11.5px;color:var(--accent);display:block;margin-bottom:6px}
+.dd-body .flow pre{margin:0}
+.dd-body .note{font-size:12px;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:10px;margin-top:14px}
+
+/* code */
+pre{background:#1f272c;color:#e7ecef;border-radius:5px;padding:14px 18px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.7;margin:12px 0 0}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+pre .c{color:#8fa3ad}
+
+/* footer */
+footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px 0;font-size:12px;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.fgrid p{margin:0;line-height:1.72}
+.fgrid b{color:var(--ink-soft);font-weight:650}
+
+/* Content visible by default: no script or observer needed, readable in any environment */
+.reveal{opacity:1}
+
+/* English narrow cards: left-align to avoid stretched word gaps */
+.dim .d,.stage p,.bound p,.panel p,.mcard p,.fgrid p,.dd-body li,td{text-align:left}
+
+@media (max-width:1000px){
+  .wrap,.nav-in{padding-left:26px;padding-right:26px}
+  .hero-grid,.split{grid-template-columns:1fr;gap:20px}
+  .trio,.bounds{grid-template-columns:repeat(2,1fr)}
+  .methods{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr;gap:12px}
+}
+@media (max-width:640px){
+  /* English-only: longer nav labels would overflow small screens */
+  .nav-links > a{display:none}
+  .brand{font-size:13px}
+  .wrap,.nav-in{padding-left:18px;padding-right:18px}
+  .brand span,.readtime{display:none}
+  .nav-in{gap:12px}
+  .nav-links{gap:16px}
+  .hero{padding:38px 0 32px}
+  section{padding:34px 0}
+  .trio,.bounds,.dims,.methods{grid-template-columns:1fr}
+  .tldr-nums{gap:4px}
+  .table-wrap{overflow-x:auto}
+  table{min-width:0;font-size:12px}
+  th,td{padding:8px 7px}
+  .pill{font-size:10px;padding:2px 6px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+@media print{
+  .nav,#progress{display:none}
+  body{background:#fff}
+  section{padding:20px 0;break-inside:avoid}
+}
+</style>
+</head>
+<body data-page-node-id="VbiWYeORVVvNAQAhJ20yDE" style="position: relative;">
+<a class="skip" href="#main" data-page-node-id="FDqsJXwzaxpTrefxbhcTa3">Skip to content</a>
+<div id="progress" aria-hidden="true" data-page-node-id="WvP93TjkD38lflEtZeHXP3" style="width: 0%;"></div>
+
+<header class="nav" data-page-node-id="fFa90cpqGVrvT7IDDfoAAk">
+  <div class="nav-in" data-page-node-id="YjFq6XzaJh0Fe24N8Smy4e">
+    <a class="brand" href="#top" data-page-node-id="nnXqs6ynG6pJOfeZl9UUEh">When Knowledge Goes Short-Form <span data-page-node-id="i122zSZPHJs6L8p3TuV5ho">SUCCES / RESEARCH NOTE</span></a>
+    <nav class="nav-links" aria-label="Section navigation" data-page-node-id="N8bCVAFLPtNnISM0KxchDh">
+      <a href="#intro" data-page-node-id="FbWTLqX7gA0ItFrtDiVsN8" class="active">Origin</a>
+      <a href="#body" data-page-node-id="pMjgI6kcX0J7aAgaKxcshh" class="">Main</a>
+      <a href="#method" data-page-node-id="8hsj13yGig4k6cDoKaRklV" class="">Method</a>
+      <a href="#review" data-page-node-id="Ig0ed9IyCFvBWj0gTGfXMo">Review</a>
+      <span class="langswitch" role="group" aria-label="Language" data-page-node-id="3aVqU42UsD5btXTeZNfzJp"><a href="one-pager.html" title="Switch to the Chinese version" lang="zh-CN" data-page-node-id="lajnNmMnzyhk7bD006PS5X">CN</a><span class="on" aria-current="true" lang="en" data-page-node-id="yzk3Upzctpn8lfcucBJU8Y">EN</span></span>
+      <span class="readtime" data-page-node-id="Icimwxw0FQktW0GtkIG4dz">~5 min</span>
+    </nav>
+  </div>
+</header>
+
+<main id="main" data-page-node-id="UdVGO9qvgzH1aprXne7Cl6">
+
+<!-- HERO -->
+<div class="hero" id="top" data-page-node-id="BwiUkls6ntJz7rOqrnU8yS">
+  <div class="wrap" data-page-node-id="iLpbXQomPM5jCtcfkiR7YT">
+    <div class="hero-grid" data-page-node-id="JztdfsnpGi9fwt43yQSmEa">
+      
+      <div data-page-node-id="0tet4nowP3bpJEyGCvUvqr">
+        
+        <h1 data-page-node-id="adujPCZEVGJ745hFdWABIh" style="">Operationalizing SUCCES in Knowledge Communication</h1>
+        <p class="sub" data-page-node-id="z2GxdCF6vyg9Nx208OE07u" style="white-space: pre-wrap;">A Computational Study of Audience Engagement in Chinese Videos</p>
+        <p class="deck" data-page-node-id="wU9kbEBFza5QKjrpTTk8iw">Three study phases · One shared rule-based codebook · From title text to top-liked comments.</p>
+        <div class="chips" data-page-node-id="MDBL2ELsBPwhdptbUPHfW0">
+          <span class="chip solid" data-page-node-id="LolffmLvobAsYBN4knlF1D">Associations only; no causal claims</span>
+          <span class="chip" data-page-node-id="5okNj0KkF3GZDro23S0kIw">Pre-registration first</span>
+          
+          <span class="chip" data-page-node-id="TfWEL01m9oqYfNKcIjaFhn">Public data · Reproducible</span>
+        </div>
+      </div><div class="tldr" data-page-node-id="AbZ7IenGf4iB52p6GM4cDc">
+        <span class="label" data-page-node-id="hsHa2JnfYnx6aF78BaxDjl" style="">The three-line summary</span>
+        <p data-page-node-id="sfo8lTIICZP19QtQfIv5A9" style="white-space: pre-wrap;">In titles, the six dimensions are <strong data-page-node-id="IJ6tWbVA1ETdBWnv54Jy0p">only partly observable</strong>; Credible and Stories barely appear.
+Across 5,717 videos, only "Concrete" shows a <strong data-page-node-id="ivnOgg0twqB0DHwc78GGVT">conditional positive association with engagement rate</strong>.
+At the comment layer, <strong data-page-node-id="4kL057qGmsPjdnxkYVOVMB">0 / 6</strong> positive associations detected.</p>
+        <div class="tldr-nums" data-page-node-id="5jouA0L5hjGHLE4B0XgSeV">
+          <div data-page-node-id="tV7Oy47heEcZmhl3EjbK37"><b data-page-node-id="QJbjqlC7NCB8StcwwruMRQ">1 / 6</b><span data-page-node-id="v6gGNTSD78TE2QlnJZ4BF1">hypotheses supported (main)</span></div>
+          <div data-page-node-id="uRVPADXCvCx85A48R6xOUK"><b class="warm" data-page-node-id="oxwvqtDannKiixekLqTu2u">0 / 6</b><span data-page-node-id="lVRjEEsu0xZemhNu2fExfv">positive associations detected (follow-up)</span></div>
+          <div data-page-node-id="MIBitLIn8DCiPVVxdTMLMx"><b class="warm" data-page-node-id="FQJRfeyMKSMtAuWRhr1GF5">2 dims</b><span data-page-node-id="hylSKvajaTqO5uIEG2LUyS">nearly unmeasurable</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 00 INTRO -->
+<section id="intro" data-page-node-id="weB4sfvCK3vowEt1iiXsQz">
+  <div class="wrap" data-page-node-id="3NdTbFgkQS1vGNNFjG7E8J">
+    <div class="sec-head reveal" data-page-node-id="0vn9dhryE7VSSW7Sa3IZOk"><span class="sec-num" data-page-node-id="ktE7ZZwpGvVxg0o9EFGv3Z">00</span><h2 data-page-node-id="5j2uW4I8sKB2PcPHvTcGJQ">Origin: how else can knowledge reach us</h2></div>
+    <div class="split" data-page-node-id="cNa7eNRgb1DrF0VTMEgQFs">
+      <div class="panel reveal" data-page-node-id="2vn5S6PRgHrQcAB7HWuB2O">
+        <p data-page-node-id="VLcBhEUWuvdnR0CMs3n7EE">Knowledge no longer lives only in classrooms. More researchers now package it into short videos, where a title and a short description have only a few seconds to win attention. In <em data-page-node-id="wSTBlo0R9gQ63dRG6NLE6f">Made to Stick</em> (2007), Chip Heath and Dan Heath proposed the <strong data-page-node-id="q8tvHWvjdbk9UlhaWvABVz" style="">SUCCES framework</strong>, a set of descriptive cues, <strong data-page-node-id="6XRaieG8apXWsfg9vfeOHk">not a tested causal law</strong>.</p>
+        <p data-page-node-id="UAMe6wSMvHyarNgV841use">The question therefore narrows to two steps: can the six dimensions be <strong data-page-node-id="JHKOgjuvSkfnW0xlqyYcMv">measured reliably</strong> in public data? And once measured, how far do their associations with audience response go? Before asking "is there an association", we must first ask "can it be measured".</p>
+      </div>
+      <div class="panel flexcol reveal" data-page-node-id="w96MHw7iFkbEON9Z0XosFy">
+        <h3 data-page-node-id="2tNozcgoDMwErPnvTogGPU">Six dimensions, operationalised as rule-item hits in titles and descriptions</h3>
+        <div class="dims" data-page-node-id="uxTEwGwr22dI7twdJz1WcM">
+          <div class="dim" style="--dc:#4c6b8c" data-page-node-id="zRABu95r4HHXETZdwwJLOW"><span class="cn" data-page-node-id="rpZuIXWT5ZicXUCtde6Ze6">Simple</span><span class="en" data-page-node-id="lK0UFzPPudO7AESbbLVPfp">H1</span><span class="d" data-page-node-id="LbiVLMSMDIjdcJ1FM2nOOD">Condensed, no redundant jargon.</span></div>
+          <div class="dim" style="--dc:#7a5aa6" data-page-node-id="5KxE4K85G0SeDlEhWA3ow9"><span class="cn" data-page-node-id="NFl2rNU7mZS845UW9m21s5">Unexpected</span><span class="en" data-page-node-id="i9DHYE9JGcCi0dDqzjO4hc">H2</span><span class="d" data-page-node-id="QIETwlpoJHNkgJnGiBER4T">Counter-intuitive or a curiosity gap.</span></div>
+          <div class="dim" style="--dc:#2f7d6b" data-page-node-id="wSIuYBzFIFbESSJBmx7ApV"><span class="cn" data-page-node-id="pCLLeg2vEGhCHU759S2XFU">Concrete</span><span class="en" data-page-node-id="Ebze5RBU0jXZlOwXJ4JYkG">H3</span><span class="d" data-page-node-id="NZGZ5MBlXFnIiw1BdDSilh">Grounded in numbers, units and examples.</span></div>
+          <div class="dim" style="--dc:#a8662c" data-page-node-id="eHEUYzZ5A4rVCOhSUqEbBt"><span class="cn" data-page-node-id="mAwxue4QfckUf4TADzJKwu">Credible</span><span class="en" data-page-node-id="LAnG3iwkSiKTy3DDxy2HbB">H4</span><span class="d warn" data-page-node-id="44A7NxCHVWxARhZdG9MOBm">Sources and verifiable evidence.</span></div>
+          <div class="dim" style="--dc:#b04a5a" data-page-node-id="rm4iRpMwhc6zE56yhr6wQk"><span class="cn" data-page-node-id="MtMInqnW68g4bUBToyCMqp">Emotional</span><span class="en" data-page-node-id="AsJwO9gbmpuKFPZGLQ3qHf">H5</span><span class="d" data-page-node-id="DajFC7OrjeISa9nUt2kief">Emotional arousal and personal relevance.</span></div>
+          <div class="dim" style="--dc:#5b6b3a" data-page-node-id="UUpTUo9gWihd9eaakfZ35t"><span class="cn" data-page-node-id="HvS4QSw8sBMflpGnxt9xgY">Stories</span><span class="en" data-page-node-id="HXXgEEJ52ADrYFEL0YAf00">H6</span><span class="d warn" data-page-node-id="XpGwc7PEykRiIU6QsJaFOd">Characters, timelines and narrative cues.</span></div>
+        </div>
+        <p class="dim-foot" data-page-node-id="dvNT78mlD9werceY93ESdU">Using only titles and descriptions, <strong data-page-node-id="UPCD4iUG0XkxjBu60GrSMu">Credible</strong> and <strong data-page-node-id="qZXiLRiDsHTKlxXF9PTdz6">Stories</strong> both show almost no variation across thousands of records.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 BODY -->
+<section id="body" data-page-node-id="DH9ykO39LDoq6e00pXK9Iv">
+  <span class="anchor" id="design" data-page-node-id="R7k8cw6lGXsZQUfY6nXRX4"></span>
+  <span class="anchor" id="hypothesis" data-page-node-id="Gp2KmEEkC1tbiBLFahTxxD"></span>
+  <span class="anchor" id="process" data-page-node-id="dMlXKSJkfdOEJRuFpHY9s5"></span>
+  <span class="anchor" id="findings" data-page-node-id="viYHSi401lCCG0XFDZTI9y"></span>
+  <span class="anchor" id="extension" data-page-node-id="GRQo4eWvW85sOAijsoPGnD"></span>
+  <div class="wrap" data-page-node-id="GlkMCjFmvLEpdfErhOYxL2">
+    <div class="sec-head reveal" data-page-node-id="LWTUGvBZcHCRTuF64p4glg"><span class="sec-num" data-page-node-id="43S2d50iUjZRMPsWixR6MZ">01</span><h2 data-page-node-id="J6jeJnmlwm3QqRAfOFHqk7" style="">Main study: fix the measurement before looking at results</h2></div>
+    <p class="lede reveal" data-page-node-id="YZ2trx1z30aMm6DmXF8EOG" style="white-space: pre-wrap;">Research question — ✗ "Does SUCCES work?" ✓ Can the six dimensions be measured reliably, and how far do the associations go?</p>
+
+    <div class="trio reveal" data-page-node-id="87w23bWKhTRLif94hnQqYo">
+      <div class="stage" data-page-node-id="MzJwRKnErqKjvebLwr52pS">
+        <span class="tag" data-page-node-id="JFKBrj2UEKiKi4DcjL4vpC" style="">Measurement Development</span><span class="role" data-page-node-id="nVsmwB0M8drS39Prp3REXt" style="">self-collected videos</span>
+        <h4 data-page-node-id="wv634ylccWijYQhiJNQQ5m">Fix the measurement first</h4>
+        <p data-page-node-id="8BRMQDPr1Piw5jG8ZqbdHf">64 self-collected videos; two rounds of blind 20% double coding showed that subjective semantic items could not be reproduced reliably, so they were excluded before any results were examined, leaving only the rule-based codebook. With too small a sample, the main model was <strong data-page-node-id="OQ4EiPwQ5sE900Wsxs0RqP">never run</strong>.</p>
+        <div class="out" data-page-node-id="RbMrf2MpzwOHMrexbFIXJu">Delivered: codebook · 11/11 self-checks</div>
+      </div>
+      
+      <div class="stage main" data-page-node-id="4TW0idcTveQDAMRNLp3nCx">
+        <span class="tag" data-page-node-id="loimhTZF7dGfF4YhvRSi26" style="">Main Empirical Analysis</span><span class="role" data-page-node-id="3IjyODLr80djfc07zYSAlw" style="">high-engagement videos</span>
+        <h4 data-page-node-id="EG94rguinXu1xsAjiN4bHz">Actually run the model on a large sample</h4>
+        <p data-page-node-id="WRbWXj0L3fkjXpn2UqSxo4">D1: 5,717 records (MIT); D2: 962 (Apache-2.0). With the same dictionary and the pre-registration frozen, we ran OLS + creator-clustered robust SE + BH-FDR. The outcome is <strong data-page-node-id="ilKMigyeqog7Qjp36lkDlr">engagement rate</strong>, not view count.</p>
+        <div class="out" data-page-node-id="UxKXaxjiuM1b4vC2bRzLJ9">Result: 1 / 6 supported · 2 / 6 consistent in direction</div>
+      </div><div class="stage" data-page-node-id="NDjF9lHrZjHVDds5qUFwFm">
+        <span class="tag" data-page-node-id="itDtfNIBvIIAx01AWhLR5Z" style="">Exploratory Extension</span><span class="role" data-page-node-id="RHfwjlQW4ZJLGcma6DIfPC" style="">top-liked comments</span>
+        <h4 data-page-node-id="AjMV7O5IxFWnMhkWuA4a9r">Move to another construct level</h4>
+        <p data-page-node-id="DqFHXzxP2UFYQJCNdgVLAB" style="">Asking whether SUCCES is associated with the process of acquiring knowledge. 927 videos / 2,773 public top-liked comments; the outcome becomes an <strong data-page-node-id="uVSLG36FGF7aAEnb1yYrb4">informational-discussion</strong> proxy in comments (not equivalent to cognitive gain), with the same clustered robust SE and BH correction.</p>
+        <div class="out" data-page-node-id="O8zME4Uqba2rsZnu6OzFFr">Result: 0 / 6 · 6/6 robustness checks agree in direction</div>
+      </div>
+    </div>
+
+    <div class="strip info reveal" data-page-node-id="yyJj14EMZFmWMD1y1gA16b">The three studies differ in sample frame, data source and unit of analysis; <b data-page-node-id="8WvT6msjUvURv9N4Xk6AVA">they are not pooled and do not corroborate each other</b>; what they share is only the codebook and the rule "fix the measurement before looking at results". Definitions, licences and per-request logs are in each study's documentation.</div>
+
+    <div class="method-head reveal" id="method" data-page-node-id="5uL03VnEY2Ny91Og1dUI5o"><span class="sec-num" data-page-node-id="LaTvsIFF2oYXZEM1DscQ2G">01 · M</span><h3 data-page-node-id="4N3LRGaZYWaTb7uzuJqtw2">Research method: four decisions made before looking at results</h3></div>
+    <div class="methods reveal" data-page-node-id="TSy8T0nBmsGSdg8sjIHbCA">
+      <div class="mcard" data-page-node-id="cu2WXaxpYGLCFfUjesuz8P">
+        <span class="k" data-page-node-id="GhKdFa0pw0tvFHmzpPSdB5">01 / Coding</span><h4 data-page-node-id="MHa9x0ckv45FiWoqvxVNzS">Rule-items only</h4>
+        <p data-page-node-id="HfdSv06Gjg02kGiXgrHH0z">Each dimension takes the valid-item mean of 3 dictionary / regex rule items; two rounds of blind double coding showed subjective semantic items could not be reproduced reliably, so they were excluded before any results were seen. Missing subtitle and verification fields are recorded as NA — no guessing, no filling with 0.</p>
+      </div>
+      <div class="mcard" data-page-node-id="E59ecy1f5dxNIExq8ZPnE1">
+        <span class="k" data-page-node-id="NOaPHCR5xtA3OCC7sLfs3S">02 / Data</span><h4 data-page-node-id="66C1E7w6aMn0nZqAcGeVXA">Clean licences, frozen exclusion order</h4>
+        <p data-page-node-id="lR44O1E7nxmYvmTPf08ZIq">D1 (MIT): 5,717 records / 215 creators; D2 (Apache-2.0): 962 / 473, with SHA-256 logged on download. Deduplication and exclusion of non-positive engagement and missing values follow the pre-registered order; raw data with an Unknown licence are not distributed.</p>
+      </div>
+      <div class="mcard" data-page-node-id="Qlqs2jiIPJoSmqiEKyCeZu">
+        <span class="k" data-page-node-id="84IfcEMvORsbPQuomud11b">03 / Outcome</span><h4 data-page-node-id="2l1cPlAjcALL6Ks7KmJEpM">Two construct levels, two definitions</h4>
+        <p data-page-node-id="YAtuBvaxXr1QI5ATHzR7pF">The main study uses log(engagement rate) = (likes + coins + favourites + shares + replies) / views, to avoid recommendation-driven exposure; the follow-up uses comment-level "informational discussion" (help-seeking question ∨ explanatory statement ∨ factual restatement), only a necessary-but-not-sufficient trace of information acquisition.</p>
+      </div>
+      <div class="mcard" data-page-node-id="XAN9zytaySvOpC6cwwd6rm">
+        <span class="k" data-page-node-id="Y2bGQ8Y8rmAVZt53RLaErn">04 / Model &amp; decision rule</span><h4 data-page-node-id="iutZ6SZgYvuhfCwmFjk0N7">OLS / LPM + clustered robust SE</h4>
+        <p data-page-node-id="ifrxBX9llEw6GTynF7Hym1">Controls for views, duration, text length, publish time and account level; creator-clustered robust standard errors (hand-written sandwich in base R) + two-sided t + BH-FDR within the six hypotheses. Support requires β &gt; 0 and q &lt; 0.05.</p>
+      </div>
+    </div>
+
+    <div class="strip hyp reveal" data-page-node-id="8BEjlvnOhzeYx1CHsoyDgu" style="white-space: pre-wrap;"><b data-page-node-id="HXjG2q9q24T4FMzPMmBwuq" style="">Hypotheses: H1–H6 all pre-specified as positive</b>, <span class="formula" data-page-node-id="dydeOpUW8RfLCzcv47lbox">β &gt; 0 and q<sub data-page-node-id="ReojoTGQ3C8qxusIkGQU30">BH</sub> &lt; 0.05</span> count as support;
+Direction, model, exclusion order and the robustness checklist were frozen before any association result was seen; robustness checks judge direction only and are not used to hunt for new significant results.
+The results are shown below:</div>
+
+    <div class="table-wrap reveal" data-page-node-id="H1hSC10itFiB69JnJzDk1o">
+      <table data-page-node-id="cexEu8byeOyDkhus82YNdd">
+        <caption data-page-node-id="imoJXvOAoUj0VLhvAyXxGM">Main study <code data-page-node-id="VymjmVVCuIMzp5lj0D552T">SK_</code> · D1 (N = 5,717, G = 215 creators), outcome log(engagement rate); q is the BH-FDR adjusted value within the six hypotheses.</caption>
+        <colgroup data-page-node-id="ArFR9HIoefoBEr8J1ZaL9N"><col style="width:8%" data-page-node-id="IV2gZbtShBrA8wbxvBod5Y"><col style="width:25%" data-page-node-id="9QvhvjMYOpdUoRdLKLFFyp"><col style="width:14%" data-page-node-id="RsRGELe3f8DSlpY2kD26mp"><col style="width:14%" data-page-node-id="tV0sWDmv3Ovn1XX9W5UYl2"><col style="width:39%" data-page-node-id="cIiJfw45UCGt7gO6aevj1n"></colgroup>
+        <thead data-page-node-id="MkLhGrz22oMg6Yuisfh8vi"><tr data-page-node-id="BXbf67uzU2C7GYHGUS7Zbf"><th data-page-node-id="fBSFCyItnPJ0iKlwaGunte">Hypothesis</th><th data-page-node-id="znMK8QgE75jzFL2ad7oICL" style="text-align: center;">Dimension</th><th class="num" data-page-node-id="HOnBkgG3OX9clJmYLWFktc" style="text-align: center;">β</th><th class="num" data-page-node-id="UvtBDgYybpK2FFBzJSeEMm" style="text-align: center;">q (BH)</th><th data-page-node-id="iB0vS6lzHQpLcsizAzSRjs" style="text-align: left;">Decision</th></tr></thead>
+        <tbody data-page-node-id="88wtpsJwbtxxk8veC9lxex">
+          <tr data-page-node-id="lzuKzL5tldHHQhTFCruUXF"><td data-page-node-id="B8dPxiN96vj0ttIIiP6WoT">H1</td><td data-page-node-id="OuRQIVFfZBrTID81uT7z9T" style="text-align: center;">Simple</td><td class="num" data-page-node-id="1Y1JUFaRXcTLAfxFgyrvWi" style="text-align: center;">−0.1219</td><td class="num" data-page-node-id="X9exrJ5V9AVkFvrTUSJaan" style="text-align: center;">0.3892</td><td data-page-node-id="eEruMEQG5msaMvK5hOYm9m"><span class="pill" data-page-node-id="yhjOCkyrCB5F3eMsG1PZ0v" style="text-align: center;">Opposite direction, not significant</span></td></tr>
+          <tr data-page-node-id="AhGYxcdk5NuKrmxxIrZjtg"><td data-page-node-id="1dkclSaRaBnBz9kjmtphVq">H2</td><td data-page-node-id="RSdqj1rFVyjxPETQd9zQIn">Unexpected</td><td class="num" data-page-node-id="CNrUUzPFf5ul0Xsy5zTNR6">−0.0915</td><td class="num" data-page-node-id="NGcif3O6ZAuTnQGQ2WbHn9">0.1010</td><td data-page-node-id="yfGuJAh6QoInBcd5DLbNKB"><span class="pill" data-page-node-id="zU5fyYu6wbbYIPlMWMBFcP">Not a finding after BH</span></td></tr>
+          <tr class="hit" data-page-node-id="NuH4y0Gxpb0S8kJ8g872uu"><td data-page-node-id="0Thjcn8HaAaO48ojWgborF">H3</td><td data-page-node-id="frlHFnkZP2GVpU0s6iOFOB">Concrete</td><td class="num" data-page-node-id="uYOTYOxFn4F2uewxm9dFCr">+0.0891</td><td class="num" data-page-node-id="D8g5C67jRDLO9vlzYSk6vO">0.0292</td><td data-page-node-id="voR3RWX0GL4B3LS1ZsSQ76"><span class="pill ok" data-page-node-id="QsMBLF6o1F9GfcJm6ZcAJc">Supported</span></td></tr>
+          <tr data-page-node-id="AmhYIXIx6gJdizclR7sUBt"><td data-page-node-id="sfdNnuHRkzNLmvRtai8too">H4</td><td data-page-node-id="G747IgbT9XtGMchSHAwmWo">Credible</td><td class="num" data-page-node-id="vcHOQDxqxK1of8FHlReRBb">+0.0619</td><td class="num" data-page-node-id="0YIJ68PX6jqtWDLZ7F8zmN">0.4003</td><td data-page-node-id="y9SpsFp0IiXv8tJgDcrjLV"><span class="pill" data-page-node-id="JEUhqiTOLofuxq9iRBBbRL">Same direction, not significant</span></td></tr>
+          <tr data-page-node-id="5EBWfjKMrfWBmhtAMFmQ3K"><td data-page-node-id="xaeWj7323fMpqiNW5Ilk9x">H5</td><td data-page-node-id="a8VNr69CfSeTFNB6Alf45A">Emotional</td><td class="num" data-page-node-id="Ki2JEDbC1WGU4qNuXH6y6e">+0.0740</td><td class="num" data-page-node-id="0cAnfULiAAbENdlW4jIlo1">0.3892</td><td data-page-node-id="zaHbvWq4ThRT0tTJiyDQaS"><span class="pill" data-page-node-id="VbZUXC63PsIBXsbna1DPgI">Same direction, not significant</span></td></tr>
+          <tr data-page-node-id="iHUdvF6FqEsRtq6JKheCo9"><td data-page-node-id="A1a83eCCruL436IWDjMJYX">H6</td><td data-page-node-id="R70zPxo8m0oWfp8nYI0QDG">Stories</td><td class="num" data-page-node-id="IzFcyFxSj1VBBBSw3Y3yJr">+0.0992</td><td class="num" data-page-node-id="bJAg0hqDf63wUl44AgKF38">0.3892</td><td data-page-node-id="mU3yqCFIp1WZjPWaSQMAbF"><span class="pill" data-page-node-id="D0FpF7KBojw9sv8i0xsiYb">Same direction, not significant</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="strip reveal" data-page-node-id="XFZHeGYGIHXV1rqgcH40go" style="white-space: pre-wrap;">The only supported <b data-page-node-id="6ckFXDu8EyvCllLELo1Jmm">H3 effect is modest</b>: 95% CI [+0.0274, +0.1508]; each +0.1 in Concrete corresponds to about +0.89% engagement rate, still positive and significant when switching to favourite rate or trimming extremes. <b data-page-node-id="GYvxPA1uT5sZjm7obuE773">Two deliberate exclusions: </b>H2's raw p = 0.0337 → q = 0.1010 is not a finding; an extreme coefficient in the other dataset is a sparse artefact and not interpretable.
+This conclusion comes with three limitations:</div>
+
+    <div class="bounds reveal" data-page-node-id="6YjkmohoRXgkYxkuHuA0bd">
+      <div class="bound" data-page-node-id="OFexg7KToskwXUgzCZJJqx"><span class="k" data-page-node-id="jY0KhTuF1VtCVeLzfrICmQ">BOUNDARY 01</span><h4 data-page-node-id="9tlspkMZ7UbiVPtVCCI4Xg">Depends on account-level controls</h4><p data-page-node-id="khook3S9JNqm0zqvkFktrR">Dropping creator fixed effects reduces H3 to +0.029 and it is no longer significant, while two other dimensions turn "significant" — without account controls the story would be completely different.</p></div>
+      <div class="bound" data-page-node-id="vFuqciTdp2unLicA5iuWOq"><span class="k" data-page-node-id="h3pCqMp7dnGcvfzkWOwn8S">BOUNDARY 02</span><h4 data-page-node-id="sDmF4HqMHfdv4BPU2BpiLT">Not replicated across domains</h4><p data-page-node-id="ZdxeOep6UP84xPE9ReKFzS">In the other domain's 962 records, H3 = −0.0638 (q = 0.9429) and only 2 / 6 agree in direction: the external-validity check did not pass.</p></div>
+      <div class="bound" data-page-node-id="oGFBAvm07O23EX5LHGgaRB"><span class="k" data-page-node-id="N5CO5AVlK3g8c5euth8fIY">BOUNDARY 03</span><h4 data-page-node-id="L2YIKXxyVsCLFvien4fE46">A measurement ceiling</h4><p data-page-node-id="Aonlk7e3sHwUKqqHDEnJpm"><code data-page-node-id="2LptbRQaICaAstZEczHDbA">s_credible</code> 95.1% and <code data-page-node-id="fyARF5F50mkMYsIHKadJAW">s_stories</code> 95.3% are zero; scaling from 64 to 5,717 records still leaves no variation — the bottleneck is operationalisation, not sample size.</p></div>
+    </div>
+
+    <div class="strip warn reveal" data-page-node-id="7ZAKAyRevguj5nIgeh7IGi"><b data-page-node-id="GgCu7HiOOAU950A98xTbPK" style="">Follow-up: </b>With informational discussion in comments as the outcome, 0 / 6 were supported (H3 = −0.0120, q = 0.732), and all four robustness specifications agree in direction 6/6; explicit learning statements appear in only 13 / 2,773 comments (0.47%), so the construct we originally wanted is nearly unmeasurable in these top comments. Engagement rate, comment text and cognitive gain are three different construct levels — they do not contradict one another and cannot corroborate one another. This is "no positive association detected", not "SUCCES does not work".</div>
+
+    <details class="deepdive reveal" data-page-node-id="Vj16rYvujzPCY2QTUP0oNX">
+      <summary data-page-node-id="3xhPG0A2ZRLgG7E0alTLRW" style="">Expand: how the results were produced</summary>
+      <div class="dd-body" data-page-node-id="M3OVSVT78kJ1wIOFd5h3qC">
+        <h4 data-page-node-id="61NAiw50AGL3ZR0lbGEPEE">1. Data flow: only the last step produces coefficients</h4>
+        <div class="flow" data-page-node-id="vm2cvkLPnVbfXgI5MeaFoq">
+          <b data-page-node-id="Zwdb2InG1oTDzIBJdiyxAU">Main study SK_ · succes-kaggle/</b>
+          <pre data-page-node-id="vNowc2blqL5Y3A8obzCqia"><code data-page-node-id="T0eIfeMwardf95xP5kHagk">SK_download.py   → data/external/*.zip              # download without login; log SHA-256
+SK_prepare.py    → data/processed/SK_coded_D1.csv / D2.csv
+                   # clean + 18 rule items + six dimension scores; descriptive checks only, no regression
+R/SK_analyze.R   → output/SK_results.txt / SK_coefficients.csv / SK_robustness.csv
+                   # the only step that produces beta / q / CI</code></pre>
+        </div>
+        <div class="flow" data-page-node-id="q80ZDsSZ1QkIUrbNa0XD5p">
+          <b data-page-node-id="TjQ0xLQmdTAht4w1Z0emm6">Follow-up SW_ · succes-weekly/</b>
+          <pre data-page-node-id="SxFPnd0Vr6nZKtr8ZHlzwS"><code data-page-node-id="5iVYYdQSj0vgYolnkCavjI">SW_collect.py    → data/raw/SW_comments_{dev,main,control}.csv  # fetch public top comments by bvid
+SW_prepare.py    → data/processed/SW_analysis.csv             # comment-level analysis table, one row per top comment
+R/SW_analyze.R   → output/SW_results.txt / SW_coefficients.csv / SW_robustness.csv</code></pre>
+        </div>
+        <p data-page-node-id="DEOH6sUCj0AFF104QsHox0">"Preparation" and "inference" are strictly separated: the two <code data-page-node-id="GPkgDUQMvGC8bQ12ukNeCf">*_prepare.py</code> scripts explicitly compute no association between the six dimensions and the outcome; coefficients appear only in the R scripts. This lets us freeze definitions before seeing results and keeps every line auditable.</p>
+
+        <h4 data-page-node-id="ilHwqHxtHLchCqj2atBfso">2. What the key code does</h4>
+        <ul data-page-node-id="Uo3OtSxD9P20gsXWCnVbza">
+          <li data-page-node-id="xB5FVBrQaVBPcSGIFqm46X"><b data-page-node-id="1Az21XfyFngjwGFj8YXxgA">Codebook</b>: <code data-page-node-id="VKphrx9zmHRA9XPn7dOzYv">SK_codebook.py</code> / <code data-page-node-id="Za74xjhNG6GyFX5aEpSto9">SW_succes.py</code> port the LEX v0.2 dictionary and 18 rule items item by item; <code data-page-node-id="yfhlNQNj7drWvpmOMnKCKj">DIM_MAP</code> maps three items per dimension; <code data-page-node-id="YbOxBmFxdVIG4DFGKwqMJb">code_row()</code> returns 18 items, the six dimension means and <code data-page-node-id="AcmtzDNRohhShNpEALogtX">n_valid</code>; <code data-page-node-id="qsyvOhjgDm8XSgmgB4dcuu">u4</code> (subtitles) and <code data-page-node-id="X14EWbE12PCjEEis9DrotB">cr4</code> (verification), when unavailable, are recorded as None. The dictionary is identical across the three studies — no new words, no changed thresholds.</li>
+          <li data-page-node-id="agiNPYOEpuFUrJPnHl0V8e"><b data-page-node-id="ACIyQe8ZRO0a3Y3isEoBdF">Inference core</b>: <code data-page-node-id="kufdximWQf7BjMItOSgQrJ">R/SK_analyze.R</code> houses <code data-page-node-id="jxcXGVjyHbhBhkEfRyWHga">cluster_vcov()</code>, which hand-builds the sandwich estimator <code data-page-node-id="6FVyFSAHFyoAw401hSOrIF">V = adj · (X'X)⁻¹ · Σ_g(X_g'u_g u_g'X_g) · (X'X)⁻¹</code>, using <code data-page-node-id="t4CUWJYBQmDs3WSDGqywL7">summary(fit)$cov.unscaled</code> to skip aliased columns, with the small-sample correction <code data-page-node-id="fWwl2M9CnxNSIwbHEJ5whp">G/(G−1)·(n−1)/(n−k)</code>; <code data-page-node-id="9PCQWfsOlODa6WiiTyZkvO">df = G−1</code> for two-sided p-values, then <code data-page-node-id="RwObv4yNHKnwINvF35uKVf">p.adjust(p, "BH")</code>, and finally applies <code data-page-node-id="Gd9JD9DDE1OlXJWmDF8txl">beta &gt; 0 &amp; q &lt; 0.05</code> as the decision rule. Everything uses only base R's <code data-page-node-id="U3GDmpdK5tpbn18UTiuGyG">lm / pt / p.adjust</code>.</li>
+          <li data-page-node-id="RyqUBQcE5FBVBsIppH2T9X"><b data-page-node-id="GLyLYmCTTAZZfzc3yX8dKf">Robustness</b>: S1–S6 are written as a <code data-page-node-id="pP0YQbyCrBCjpuYifcTda4">specs</code> list and run once in the pre-registered order (favourite rate / share rate, trimming the top and bottom 1%, dropping creator fixed effects, <code data-page-node-id="5Lrux9wIWWnmomDOoVIxh5">cr4</code> set to 0, switching to D2); no subsets are chosen after the fact; <code data-page-node-id="vpJI3HghYW5MPTcdUAkZcK">R/SW_analyze.R</code> reuses the same <code data-page-node-id="KuLO723bbwyMqidv7Se5Os">cluster_vcov()</code>, marks aliased / NA coefficients as "not estimable", and flags the sparse artefact driven by 9 / 434 non-zero rows as <code data-page-node-id="uKlSSDPZeAsCDFSbJJNVxC">sparse_flag</code>, keeping it out of the conclusions.</li>
+          <li data-page-node-id="z6cLjHtorqg7GdHg8BhGfH"><b data-page-node-id="rWGypj1sVolMwVrIxtLiZV">Follow-up outcome</b>: <code data-page-node-id="4TRAEGS2U3AYpXYMAs5Fmn">SW_info_markers.py</code> defines <code data-page-node-id="lDshFH2pwRftXIdqG2BfFc">info_discussion = ask ∨ explain ∨ fact</code> (help-seeking questions / explanatory statements / factual restatements, all regex-based rule items); an audit of 180 development-set comments found almost no explicit learning statements, so the main outcome was changed before any association was examined and the development set was excluded entirely.</li>
+        </ul>
+
+        <h4 data-page-node-id="1oAwevTIHa9wGbEU1GHDfH" style="">3. Conclusions</h4>
+        <ul data-page-node-id="gGWOTpu87A6fHAm37NJBoa">
+          <li data-page-node-id="VOochiBGDlxgqjFOD94ZEC"><b data-page-node-id="V2r3lRMGGxx9TaccNkZBi0">Main</b>: 1 / 6 supported — H3 Concrete beta = +0.0891, q = 0.0292, 95% CI [+0.0274, +0.1508], about +0.89% engagement rate per +0.1; robust to favourite rate and trimming extremes, but dropping creator fixed effects leaves +0.029 non-significant, and D2 gives −0.0638 (q = 0.9429) with only 2 / 6 consistent in direction.</li>
+          <li data-page-node-id="oLlBOvm6Xtuh0XDsCQcTZo"><b data-page-node-id="YZXZ9FKCH5uspOuhdZdTl8">Follow-up</b>: 0 / 6 positive associations detected — H3 = −0.0120 (q = 0.732); S1 / S2 / S4 / S6 agree in direction 6 / 6; explicit learning statements appear in only 13 / 2,773 comments (0.47%), so "viewers acquired information" is nearly unmeasurable in these top-liked comments.</li>
+        </ul>
+
+        
+        <ul data-page-node-id="ryNH3hhVi0Kc2O0p9nnf76">
+          
+          
+          
+        </ul>
+        
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 02 REVIEW -->
+<section id="review" data-page-node-id="d4GqMqb6YMxfJjUnOEEmFV">
+  <div class="wrap" data-page-node-id="vhpjyTcanLAAlYBcOAeTxR">
+    <div class="sec-head reveal" data-page-node-id="YvNCZKDDrGrxVRNk3GE56d"><span class="sec-num" data-page-node-id="mbhX1B6ESXNaVPISUKlb7B">02</span><h2 data-page-node-id="K3ATgDLPKt4RBZD3VkSTYK">Review: what we deliver is not an answer but a map of the boundaries</h2></div>
+    <div class="split" data-page-node-id="tmSgjE0hzpovkA7DgEST9x">
+      <div class="panel reveal" data-page-node-id="AFLqYASS84o8uziaJTR4T0">
+        <h3 data-page-node-id="6ev7Rx028ssGAQZNCn6Fai">What we actually measured</h3>
+        <p data-page-node-id="ZcfxSx1bnd9q74jb64Jtsp">We measured <strong data-page-node-id="zwAlnB6oDHJGFJxE0d3H2y">dictionary hits in titles and descriptions</strong>, not the constructs themselves or content quality; observational data cannot separate recommendation traffic, thumbnails, account size or reverse title edits, and the sample frame is not random.</p>
+        <h3 style="margin-top: 18px; white-space: pre-wrap;" data-page-node-id="y2nKzgoce9BNv4Xe5leMay">Three conclusions we can draw</h3>
+        <ul data-page-node-id="XaW5zluftz8DSBaYmlf3Bz">
+          <li data-page-node-id="Wqti9xa2nFZjBdxzJBmRCT">At the title level, the six dimensions are <strong data-page-node-id="fNlwtsD8cFvx4Z2ZX57HiI">partly observable</strong>, with Credible and Stories almost absent.</li>
+          <li data-page-node-id="Av6n01KE01pNAc52jwOmbD">The only association that holds is "Concrete": modest in size, dependent on account-level controls, and not replicated across domains.</li>
+          <li data-page-node-id="BVwepNDbsNEamxs1rj0N8D">At the comment layer, with informational discussion as the outcome, none of the six hypotheses showed a positive association.</li>
+        </ul>
+      </div>
+      <div class="panel tint reveal" data-page-node-id="QodzRWTUFbc5I0eBiasKJM">
+        <h3 data-page-node-id="GTQm9qNiSRWZhn1RtdLOBW">Next step: move coding into the video content itself</h3>
+        <p data-page-node-id="5N6PFZFDxYpvTXLIuBC8RA">Not by enlarging the sample, but by <strong data-page-node-id="booAv9ViVAwUN90YSGFHck">changing what gets coded</strong>: ASR subtitles, on-screen OCR and narrative-structure annotation, so Credible and Stories have a chance to be observed. A hard prerequisite is to rewrite the codebook and establish reliability before any modelling.</p>
+        <h3 style="margin-top:18px" data-page-node-id="TYZvs7iKAcH57esdL6LBZe">Reproduction</h3>
+        <p class="small" data-page-node-id="WhN6AcByzrR8HzA6fuV6Yp">The analysis layer uses only base R, with no network access and no packages to install; full commands are in the repository's <code data-page-node-id="IBlEXBHFlDHjVGaLeeRdEW">docs/REPRODUCE.md</code>.</p>
+        <pre data-page-node-id="Rt7laKPGgAWvsOO2tIHKT6"><code data-page-node-id="XaScipndWTp6TR9RIh03vf"><span class="c" data-page-node-id="IqDwutEV1AVBhRvHu4fK8S"># SC_ · this repository</span>
+Rscript R/SC_mvp.R &amp;&amp; Rscript R/SC_kappa.R
+<span class="c" data-page-node-id="AnpZuy7ytQdBrc4UHxSMJQ"># SK_ · succes-kaggle/</span>
+python3 SK_download.py &amp;&amp; python3 SK_prepare.py &amp;&amp; Rscript R/SK_analyze.R
+<span class="c" data-page-node-id="tcFgXrLDLIJ4OAM39DzsBX"># SW_ · succes-weekly/ (read-only reproduction)</span>
+python3 SW_prepare.py &amp;&amp; Rscript R/SW_analyze.R</code></pre>
+      </div>
+    </div>
+    <div class="answer reveal" data-page-node-id="THA3wsA47h3EQnTukvCctZ">This material cannot answer "Does SUCCES work?"; it can only answer which associations were detected, and which were not, under these reproducible operationalisations. It is better read as a descriptive heuristic than as a tested causal mechanism.</div>
+    <div class="strip reveal" style="margin-top:16px" data-page-node-id="EKaLWJTrbSkLtfEUTt6goL">This page is a <strong data-page-node-id="PqGTLoOdV8Li3wswM4QrTq">series-level narrative</strong>, hosted in the preceding <code data-page-node-id="NAEoRQRURTwX7jncTkmMOq">SC_</code> public repository; the coefficients, q-values and sample sizes come from the independent <code data-page-node-id="ip0tK8lf3mpa2lVZhjL5ox">SK_</code> / <code data-page-node-id="FCGYl0eVCqkH8yVmekcuZa">SW_</code> projects, <strong data-page-node-id="ciuewf43yMvngjXkMDGXAn">not produced by this repository's own scripts</strong>, and the preceding study's status ("no empirical findings; main model never run") is unchanged. For the full written version, see <code data-page-node-id="cUMp4bcsHO9OaGSxxdjs8c">REPORT.md</code>.</div>
+  </div>
+</section>
+
+</main>
+
+<footer data-page-node-id="qfrQxpkaqJGgMOT6C78GjQ">
+  <div class="wrap fgrid" data-page-node-id="RZyWPJCm1CoOg7R3WpmcLY">
+    <p data-page-node-id="CetiRdP51PvqEatYIyeOMo"><b data-page-node-id="S4UkkHlChmByaADWSyknWb">Data &amp; reproduction</b> Public metadata and aggregate results only; no personal data, comment text or credentials. Pre-registrations, codebooks and logs are published with their respective studies.</p>
+    <p data-page-node-id="rLM88S2MjTHwOSk0jMJR0D"><b data-page-node-id="X8BeG4W3gCrD850ENHJVA7">Licence</b> Code is MIT. Main-study data are Kaggle D1 MIT / D2 Apache-2.0; the follow-up data source has an Unknown licence, so raw CSVs and comment text are not distributed.</p>
+    <p data-page-node-id="AICNWDS2jRTtaPgKC64xGv"><b data-page-node-id="LPB7RE7AhkaGLJnCyLiQTc">Framework source</b> SUCCES comes from Chip Heath &amp; Dan Heath, "Made to Stick" (2007), used here solely as an object of academic analysis; this page makes no causal or effectiveness claims.</p>
+  </div>
+</footer>
+
+<script data-page-node-id="syCBAI274hLx8xNTv2PqWE">
+(function(){
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    var pos = 120, current = null;
+    sections.forEach(function(s){ if (s && s.getBoundingClientRect().top <= pos) current = s.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+
+
+</body></html>

@@ -63,8 +63,11 @@ p,li,.just,caption,.box p,.card p,.stage p,.bound p,.panel p,.dim .d,.fgrid p,.a
 .nav-links a{font-size:13px;color:var(--muted);white-space:nowrap;border:0;padding:4px 0;transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--accent)}
 .nav-links a.active{font-weight:600}
-.nav-links a.alt{font-size:12px;color:var(--accent);border:1px solid #cfe0e5;border-radius:999px;padding:3px 11px;background:var(--accent-soft)}
-.nav-links a.alt:hover{background:#dfeaee}
+.langswitch{display:inline-flex;align-items:center;border:1px solid #cfe0e5;border-radius:999px;overflow:hidden;flex:none;background:var(--surface);font-size:11.5px}
+.langswitch a,.langswitch .on{display:inline-block;padding:3px 12px;line-height:1.6;white-space:nowrap;border:0}
+.langswitch a{color:var(--muted)}
+.langswitch a:hover{background:#dfeaee;color:var(--accent)}
+.langswitch .on{background:var(--accent);color:#fff;font-weight:650}
 .readtime{font-size:11px;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border:1px solid #cfe0e5;padding:3px 10px;border-radius:999px;white-space:nowrap}
 
 /* hero */
@@ -255,7 +258,7 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
       <a href="#body" data-page-node-id="pMjgI6kcX0J7aAgaKxcshh" class="">主体</a>
       <a href="#method" data-page-node-id="8hsj13yGig4k6cDoKaRklV" class="">方法</a>
       <a href="#review" data-page-node-id="Ig0ed9IyCFvBWj0gTGfXMo">反思</a>
-      <a class="alt" href="index.html" title="精简版：约 3 分钟">3 分钟版</a>
+      <span class="langswitch" role="group" aria-label="语言切换" data-page-node-id="BJX4ZQx6d8bNttUaBObu0D"><span class="on" aria-current="true" lang="zh-CN" data-page-node-id="8Zm6p90jSRlpE2IBSVHatQ">中文</span><a href="one-pager-en.html" title="Switch to the English version" lang="en" data-page-node-id="HFwCQOHrAPqz4O501dNKaJ">EN</a></span>
       <span class="readtime" data-page-node-id="Icimwxw0FQktW0GtkIG4dz">约 5 分钟</span>
     </nav>
   </div>
@@ -271,7 +274,7 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
         
         <h1 data-page-node-id="adujPCZEVGJ745hFdWABIh">当知识走进短视频</h1>
         <p class="sub" data-page-node-id="z2GxdCF6vyg9Nx208OE07u">SUCCES 六维在中文知识类视频中的一次可复现检验</p>
-        <p class="deck" data-page-node-id="wU9kbEBFza5QKjrpTTk8iw">三个独立项目 · 同一套规则项编码表 · 从标题文本走到高赞评论。</p>
+        <p class="deck" data-page-node-id="wU9kbEBFza5QKjrpTTk8iw">三个项目阶段 · 同一套规则项编码表 · 从标题文本到高赞评论。</p>
         <div class="chips" data-page-node-id="MDBL2ELsBPwhdptbUPHfW0">
           <span class="chip solid" data-page-node-id="LolffmLvobAsYBN4knlF1D">只作关联解释，不含因果结论</span>
           <span class="chip" data-page-node-id="5okNj0KkF3GZDro23S0kIw">预注册先行</span>
@@ -280,7 +283,7 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
         </div>
       </div>
       <div class="tldr" data-page-node-id="AbZ7IenGf4iB52p6GM4cDc">
-        <span class="label" data-page-node-id="hsHa2JnfYnx6aF78BaxDjl" style="">三句话看懂​​</span>
+        <span class="label" data-page-node-id="hsHa2JnfYnx6aF78BaxDjl" style="">三句话看懂</span>
         <p data-page-node-id="sfo8lTIICZP19QtQfIv5A9" style="white-space: pre-wrap;">六维在标题里<strong data-page-node-id="IJ6tWbVA1ETdBWnv54Jy0p">只部分可观测</strong>，可信与故事几乎不出现。
 5,717 条视频里仅「具象」与互动率呈<strong data-page-node-id="ivnOgg0twqB0DHwc78GGVT">有条件正相关</strong>。
 换到评论层，<strong data-page-node-id="4kL057qGmsPjdnxkYVOVMB">0 / 6</strong> 检出正相关。</p>
@@ -327,18 +330,18 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
   <span class="anchor" id="findings" data-page-node-id="viYHSi401lCCG0XFDZTI9y"></span>
   <span class="anchor" id="extension" data-page-node-id="GRQo4eWvW85sOAijsoPGnD"></span>
   <div class="wrap" data-page-node-id="GlkMCjFmvLEpdfErhOYxL2">
-    <div class="sec-head reveal" data-page-node-id="LWTUGvBZcHCRTuF64p4glg"><span class="sec-num" data-page-node-id="43S2d50iUjZRMPsWixR6MZ">01</span><h2 data-page-node-id="J6jeJnmlwm3QqRAfOFHqk7" style="">主体：先定测量，再看结果​</h2></div>
+    <div class="sec-head reveal" data-page-node-id="LWTUGvBZcHCRTuF64p4glg"><span class="sec-num" data-page-node-id="43S2d50iUjZRMPsWixR6MZ">01</span><h2 data-page-node-id="J6jeJnmlwm3QqRAfOFHqk7" style="">主体：先定测量，再看结果</h2></div>
     <p class="lede reveal" data-page-node-id="YZ2trx1z30aMm6DmXF8EOG" style="">研究问题——❌「SUCCES 有没有用」 ✅六维能否被稳定测量、关联能走多远。</p>
 
     <div class="trio reveal" data-page-node-id="87w23bWKhTRLif94hnQqYo">
       <div class="stage" data-page-node-id="MzJwRKnErqKjvebLwr52pS">
-        <span class="tag" data-page-node-id="JFKBrj2UEKiKi4DcjL4vpC">SC_</span><span class="role" data-page-node-id="nVsmwB0M8drS39Prp3REXt" style="">前序 · 自采视频​</span>
+        <span class="tag" data-page-node-id="JFKBrj2UEKiKi4DcjL4vpC">SC_</span><span class="role" data-page-node-id="nVsmwB0M8drS39Prp3REXt" style="">前序 · 自采视频</span>
         <h4 data-page-node-id="wv634ylccWijYQhiJNQQ5m">先把测量定下来</h4>
         <p data-page-node-id="8BRMQDPr1Piw5jG8ZqbdHf">64 条自采视频；两轮盲法 20% 双人编码显示主观语义项无法稳定复现，在看结果前整体排除，只交付规则项编码表。主模型因样本量不足<strong data-page-node-id="OQ4EiPwQ5sE900Wsxs0RqP">从未运行</strong>。</p>
         <div class="out" data-page-node-id="RbMrf2MpzwOHMrexbFIXJu">交付：编码表 · 自检 11/11</div>
       </div>
       <div class="stage main" data-page-node-id="4TW0idcTveQDAMRNLp3nCx">
-        <span class="tag" data-page-node-id="loimhTZF7dGfF4YhvRSi26">SK_</span><span class="role" data-page-node-id="3IjyODLr80djfc07zYSAlw" style="">主体 · Kaggle高赞视频​​</span>
+        <span class="tag" data-page-node-id="loimhTZF7dGfF4YhvRSi26">SK_</span><span class="role" data-page-node-id="3IjyODLr80djfc07zYSAlw" style="">主体 · Kaggle高赞视频</span>
         <h4 data-page-node-id="EG94rguinXu1xsAjiN4bHz">在大样本上真跑模型</h4>
         <p data-page-node-id="WRbWXj0L3fkjXpn2UqSxo4">D1 5,717 条（MIT）、D2 962 条（Apache-2.0）；同一词典，预注册冻结后跑 OLS + UP 主聚类稳健 SE + BH-FDR。因变量为<strong data-page-node-id="ilKMigyeqog7Qjp36lkDlr">互动率</strong>而非播放量。</p>
         <div class="out" data-page-node-id="UxKXaxjiuM1b4vC2bRzLJ9">结果：1 / 6 获支持 · 方向一致 2 / 6</div>
@@ -383,7 +386,7 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
         <colgroup data-page-node-id="ArFR9HIoefoBEr8J1ZaL9N"><col style="width:8%" data-page-node-id="IV2gZbtShBrA8wbxvBod5Y"><col style="width:25%" data-page-node-id="9QvhvjMYOpdUoRdLKLFFyp"><col style="width:14%" data-page-node-id="RsRGELe3f8DSlpY2kD26mp"><col style="width:14%" data-page-node-id="tV0sWDmv3Ovn1XX9W5UYl2"><col style="width:39%" data-page-node-id="cIiJfw45UCGt7gO6aevj1n"></colgroup>
         <thead data-page-node-id="MkLhGrz22oMg6Yuisfh8vi"><tr data-page-node-id="BXbf67uzU2C7GYHGUS7Zbf"><th data-page-node-id="fBSFCyItnPJ0iKlwaGunte">假设</th><th data-page-node-id="znMK8QgE75jzFL2ad7oICL" style="text-align: center;">维度</th><th class="num" data-page-node-id="HOnBkgG3OX9clJmYLWFktc" style="text-align: center;">β</th><th class="num" data-page-node-id="UvtBDgYybpK2FFBzJSeEMm" style="text-align: center;">q (BH)</th><th data-page-node-id="iB0vS6lzHQpLcsizAzSRjs" style="text-align: left;">判定</th></tr></thead>
         <tbody data-page-node-id="88wtpsJwbtxxk8veC9lxex">
-          <tr data-page-node-id="lzuKzL5tldHHQhTFCruUXF"><td data-page-node-id="B8dPxiN96vj0ttIIiP6WoT">H1</td><td data-page-node-id="OuRQIVFfZBrTID81uT7z9T">Simple 简洁</td><td class="num" data-page-node-id="1Y1JUFaRXcTLAfxFgyrvWi" style="text-align: center;">−0.1219​</td><td class="num" data-page-node-id="X9exrJ5V9AVkFvrTUSJaan" style="text-align: center;">0.3892</td><td data-page-node-id="eEruMEQG5msaMvK5hOYm9m"><span class="pill" data-page-node-id="yhjOCkyrCB5F3eMsG1PZ0v" style="text-align: center;">方向相反且不显著</span></td></tr>
+          <tr data-page-node-id="lzuKzL5tldHHQhTFCruUXF"><td data-page-node-id="B8dPxiN96vj0ttIIiP6WoT">H1</td><td data-page-node-id="OuRQIVFfZBrTID81uT7z9T">Simple 简洁</td><td class="num" data-page-node-id="1Y1JUFaRXcTLAfxFgyrvWi" style="text-align: center;">−0.1219</td><td class="num" data-page-node-id="X9exrJ5V9AVkFvrTUSJaan" style="text-align: center;">0.3892</td><td data-page-node-id="eEruMEQG5msaMvK5hOYm9m"><span class="pill" data-page-node-id="yhjOCkyrCB5F3eMsG1PZ0v" style="text-align: center;">方向相反且不显著</span></td></tr>
           <tr data-page-node-id="AhGYxcdk5NuKrmxxIrZjtg"><td data-page-node-id="1dkclSaRaBnBz9kjmtphVq">H2</td><td data-page-node-id="RSdqj1rFVyjxPETQd9zQIn">Unexpected 意外</td><td class="num" data-page-node-id="CNrUUzPFf5ul0Xsy5zTNR6">−0.0915</td><td class="num" data-page-node-id="NGcif3O6ZAuTnQGQ2WbHn9">0.1010</td><td data-page-node-id="yfGuJAh6QoInBcd5DLbNKB"><span class="pill" data-page-node-id="zU5fyYu6wbbYIPlMWMBFcP">BH 后不算发现</span></td></tr>
           <tr class="hit" data-page-node-id="NuH4y0Gxpb0S8kJ8g872uu"><td data-page-node-id="0Thjcn8HaAaO48ojWgborF">H3</td><td data-page-node-id="frlHFnkZP2GVpU0s6iOFOB">Concrete 具象</td><td class="num" data-page-node-id="uYOTYOxFn4F2uewxm9dFCr">+0.0891</td><td class="num" data-page-node-id="D8g5C67jRDLO9vlzYSk6vO">0.0292</td><td data-page-node-id="voR3RWX0GL4B3LS1ZsSQ76"><span class="pill ok" data-page-node-id="QsMBLF6o1F9GfcJm6ZcAJc">获得支持</span></td></tr>
           <tr data-page-node-id="AmhYIXIx6gJdizclR7sUBt"><td data-page-node-id="sfdNnuHRkzNLmvRtai8too">H4</td><td data-page-node-id="G747IgbT9XtGMchSHAwmWo">Credible 可信</td><td class="num" data-page-node-id="vcHOQDxqxK1of8FHlReRBb">+0.0619</td><td class="num" data-page-node-id="0YIJ68PX6jqtWDLZ7F8zmN">0.4003</td><td data-page-node-id="y9SpsFp0IiXv8tJgDcrjLV"><span class="pill" data-page-node-id="JEUhqiTOLofuxq9iRBBbRL">方向一致但不显著</span></td></tr>
@@ -402,10 +405,10 @@ footer{background:var(--surface-2);border-top:1px solid var(--line);padding:24px
       <div class="bound" data-page-node-id="oGFBAvm07O23EX5LHGgaRB"><span class="k" data-page-node-id="N5CO5AVlK3g8c5euth8fIY">BOUNDARY 03</span><h4 data-page-node-id="L2YIKXxyVsCLFvien4fE46">测量天花板</h4><p data-page-node-id="Aonlk7e3sHwUKqqHDEnJpm"><code data-page-node-id="2LptbRQaICaAstZEczHDbA">s_credible</code> 95.1%、<code data-page-node-id="fyARF5F50mkMYsIHKadJAW">s_stories</code> 95.3% 为零；样本从 64 扩到 5,717 仍无变异，瓶颈在操作化而非样本量。</p></div>
     </div>
 
-    <div class="strip warn reveal" data-page-node-id="7ZAKAyRevguj5nIgeh7IGi"><b data-page-node-id="GgCu7HiOOAU950A98xTbPK" style="">延伸：​</b>换成评论层信息性讨论后 0 / 6 获支持（H3 = −0.0120，q = 0.732），四个稳健设定方向 6/6 一致；显式学习表述仅 13 / 2,773（0.47%），原想测的构念在此类热评中近乎不可测。互动率、评论文本、认知增益是三层不同构念，不矛盾也不能互证；这是「未检出正相关」，不是「SUCCES 无效」。</div>
+    <div class="strip warn reveal" data-page-node-id="7ZAKAyRevguj5nIgeh7IGi"><b data-page-node-id="GgCu7HiOOAU950A98xTbPK" style="">延伸：</b>换成评论层信息性讨论后 0 / 6 获支持（H3 = −0.0120，q = 0.732），四个稳健设定方向 6/6 一致；显式学习表述仅 13 / 2,773（0.47%），原想测的构念在此类热评中近乎不可测。互动率、评论文本、认知增益是三层不同构念，不矛盾也不能互证；这是「未检出正相关」，不是「SUCCES 无效」。</div>
 
     <details class="deepdive reveal" data-page-node-id="Vj16rYvujzPCY2QTUP0oNX">
-      <summary data-page-node-id="3xhPG0A2ZRLgG7E0alTLRW" style="">展开：结论是怎么跑出来的​​</summary>
+      <summary data-page-node-id="3xhPG0A2ZRLgG7E0alTLRW" style="">展开：结论是怎么跑出来的</summary>
       <div class="dd-body" data-page-node-id="M3OVSVT78kJ1wIOFd5h3qC">
         <h4 data-page-node-id="61NAiw50AGL3ZR0lbGEPEE">一、数据流：只有最后一步产出系数</h4>
         <div class="flow" data-page-node-id="vm2cvkLPnVbfXgI5MeaFoq">
@@ -432,7 +435,7 @@ R/SW_analyze.R   → output/SW_results.txt / SW_coefficients.csv / SW_robustness
           <li data-page-node-id="z6cLjHtorqg7GdHg8BhGfH"><b data-page-node-id="rWGypj1sVolMwVrIxtLiZV">延伸因变量</b>：<code data-page-node-id="4TRAEGS2U3AYpXYMAs5Fmn">SW_info_markers.py</code> 定义 <code data-page-node-id="lDshFH2pwRftXIdqG2BfFc">info_discussion = ask ∨ explain ∨ fact</code>（求解提问 / 解释性陈述 / 事实复述，均为正则规则项）；开发集 180 条审计发现显式学习表述近乎 0 命中，故在看关联之前更换主因变量，并整体排除开发集。</li>
         </ul>
 
-        <h4 data-page-node-id="1oAwevTIHa9wGbEU1GHDfH" style="">三、结论​</h4>
+        <h4 data-page-node-id="1oAwevTIHa9wGbEU1GHDfH" style="">三、结论</h4>
         <ul data-page-node-id="gGWOTpu87A6fHAm37NJBoa">
           <li data-page-node-id="VOochiBGDlxgqjFOD94ZEC"><b data-page-node-id="V2r3lRMGGxx9TaccNkZBi0">主体</b>：1 / 6 获支持 —— H3 Concrete β = +0.0891、q = 0.0292、95% CI [+0.0274, +0.1508]，每 +0.1 约 +0.89% 互动率；换收藏率与去极值仍稳，但去掉 UP 主固定效应后 +0.029 不显著，D2 为 −0.0638（q = 0.9429）、方向一致仅 2 / 6。</li>
           <li data-page-node-id="oLlBOvm6Xtuh0XDsCQcTZo"><b data-page-node-id="YZXZ9FKCH5uspOuhdZdTl8">延伸</b>：0 / 6 检出正相关 —— H3 = −0.0120（q = 0.732），S1 / S2 / S4 / S6 四个设定方向 6 / 6 一致；显式学习表述仅 13 / 2,773（0.47%），「观众获取信息」在这类高赞热评中近乎不可测。</li>
@@ -458,7 +461,7 @@ R/SW_analyze.R   → output/SW_results.txt / SW_coefficients.csv / SW_robustness
       <div class="panel reveal" data-page-node-id="AFLqYASS84o8uziaJTR4T0">
         <h3 data-page-node-id="6ev7Rx028ssGAQZNCn6Fai">我们实际上测了什么</h3>
         <p data-page-node-id="ZcfxSx1bnd9q74jb64Jtsp">测的是<strong data-page-node-id="zwAlnB6oDHJGFJxE0d3H2y">标题与简介上的词典命中</strong>，不是构念本身或内容质量；观察性数据无法分离推荐流、封面、账号体量与反向改标题的路径，样本框也非随机。</p>
-        <h3 style="margin-top: 18px; white-space: pre-wrap;" data-page-node-id="y2nKzgoce9BNv4Xe5leMay">能得出的三点结论​</h3>
+        <h3 style="margin-top: 18px; white-space: pre-wrap;" data-page-node-id="y2nKzgoce9BNv4Xe5leMay">能得出的三点结论</h3>
         <ul data-page-node-id="XaW5zluftz8DSBaYmlf3Bz">
           <li data-page-node-id="Wqti9xa2nFZjBdxzJBmRCT">六维在标题层<strong data-page-node-id="fNlwtsD8cFvx4Z2ZX57HiI">部分可观测</strong>，可信与故事两维几乎不出现。</li>
           <li data-page-node-id="Av6n01KE01pNAc52jwOmbD">唯一稳住的关联是「具象」，效应温和、依赖账号层控制、跨领域未复现。</li>
